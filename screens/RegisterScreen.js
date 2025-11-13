@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 
 export default function RegisterScreen({ onRegister, navigateToLogin, setLoading }) {
   const [form, setForm] = useState({
@@ -11,7 +20,7 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
     height: "",
     weight: "",
     gender: "male",
-    activityLevel: "moyen",
+    activityLevel: "medium",
   });
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
@@ -25,49 +34,195 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Créer un compte</Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>Create Account</Text>
 
-      <TextInput style={styles.input} placeholder="Prénom" onChangeText={(v) => handleChange("firstName", v)} />
-      <TextInput style={styles.input} placeholder="Nom" onChangeText={(v) => handleChange("lastName", v)} />
-      <TextInput style={styles.input} placeholder="Email" onChangeText={(v) => handleChange("email", v)} />
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        secureTextEntry
-        onChangeText={(v) => handleChange("password", v)}
-      />
-      <TextInput style={styles.input} placeholder="Âge" keyboardType="numeric" onChangeText={(v) => handleChange("age", v)} />
-      <TextInput style={styles.input} placeholder="Taille (cm)" keyboardType="numeric" onChangeText={(v) => handleChange("height", v)} />
-      <TextInput style={styles.input} placeholder="Poids (kg)" keyboardType="numeric" onChangeText={(v) => handleChange("weight", v)} />
+        <View style={styles.form}>
+          <Text style={styles.label}>First Name</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="First Name"
+            value={form.firstName}
+            onChangeText={(v) => handleChange("firstName", v)}
+          />
 
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
-        <Text style={styles.buttonText}>Créer mon compte</Text>
-      </TouchableOpacity>
+          <Text style={styles.label}>Last Name</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Last Name"
+            value={form.lastName}
+            onChangeText={(v) => handleChange("lastName", v)}
+          />
 
-      <TouchableOpacity onPress={navigateToLogin}>
-        <Text style={styles.link}>Déjà un compte ? Connecte-toi</Text>
-      </TouchableOpacity>
-    </ScrollView>
+          <Text style={styles.label}>Gender</Text>
+          <View style={styles.genderGroup}>
+            {["male", "female", "other"].map((g) => (
+              <TouchableOpacity
+                key={g}
+                style={[
+                  styles.genderButton,
+                  form.gender === g && styles.genderButtonSelected,
+                ]}
+                onPress={() => handleChange("gender", g)}
+              >
+                <Text
+                  style={[
+                    styles.genderText,
+                    form.gender === g && styles.genderTextSelected,
+                  ]}
+                >
+                  {g.charAt(0).toUpperCase() + g.slice(1)}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          <Text style={styles.label}>Age</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Age"
+            keyboardType="numeric"
+            value={form.age}
+            onChangeText={(v) => handleChange("age", v)}
+          />
+
+          <Text style={styles.label}>Height (cm)</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Height"
+            keyboardType="numeric"
+            value={form.height}
+            onChangeText={(v) => handleChange("height", v)}
+          />
+
+          <Text style={styles.label}>Weight (kg)</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Weight"
+            keyboardType="numeric"
+            value={form.weight}
+            onChangeText={(v) => handleChange("weight", v)}
+          />
+
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            keyboardType="email-address"
+            value={form.email}
+            onChangeText={(v) => handleChange("email", v)}
+          />
+
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            secureTextEntry
+            value={form.password}
+            onChangeText={(v) => handleChange("password", v)}
+          />
+
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
+            <Text style={styles.buttonText}>Create Account</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.secondaryButton} onPress={navigateToLogin}>
+            <Text style={styles.secondaryText}>Already have an account? Log in</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 24, backgroundColor: "#fff" },
-  title: { fontSize: 26, fontWeight: "700", marginBottom: 16, textAlign: "center" },
-  input: {
-    backgroundColor: "#F0F0F0",
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 14,
-  },
-  button: {
-    backgroundColor: "#007AFF",
-    padding: 14,
-    borderRadius: 8,
+  container: {
+    flexGrow: 1,
+    backgroundColor: "#ffffff",
     alignItems: "center",
-    marginTop: 8,
+    justifyContent: "center",
+    padding: 24,
   },
-  buttonText: { color: "#fff", fontSize: 16, fontWeight: "600" },
-  link: { color: "#007AFF", textAlign: "center", marginTop: 20 },
+
+  title: {
+    fontSize: 28,
+    color: "#3e6b47",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginBottom: 30,
+    fontWeight: "700",
+  },
+
+  form: {
+    width: "100%",
+    maxWidth: 360,
+  },
+
+  label: {
+    fontSize: 13,
+    color: "#7a7a7a",
+    marginTop: 18,
+    marginBottom: 6,
+    textTransform: "uppercase",
+  },
+
+  input: {
+    backgroundColor: "#f0f0f0",
+    borderRadius: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    fontSize: 15,
+    color: "#333",
+  },
+
+  genderGroup: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 6,
+  },
+
+  genderButton: {
+    flex: 1,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 8,
+    paddingVertical: 10,
+    marginHorizontal: 4,
+    alignItems: "center",
+  },
+
+  genderButtonSelected: { backgroundColor: "#3e6b47" },
+
+  genderText: { color: "#555" },
+
+  genderTextSelected: { color: "#fff", fontWeight: "600" },
+
+  button: {
+    marginTop: 28,
+    backgroundColor: "#3e6b47",
+    borderRadius: 8,
+    paddingVertical: 14,
+    alignItems: "center",
+  },
+
+  buttonText: {
+    color: "white",
+    fontWeight: "700",
+    fontSize: 16,
+    textTransform: "uppercase",
+  },
+
+  secondaryButton: {
+    marginTop: 16,
+    alignItems: "center",
+  },
+
+  secondaryText: {
+    color: "#3e6b47",
+    fontWeight: "600",
+    textTransform: "uppercase",
+  },
 });
