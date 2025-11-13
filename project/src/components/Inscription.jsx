@@ -10,7 +10,7 @@ import {
   Platform,
 } from "react-native";
 
-export default function Inscription() {
+export default function Inscription({ onBack }) {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
@@ -31,92 +31,49 @@ export default function Inscription() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>TITLE</Text>
+
+        <Text style={styles.title}>Inscription</Text>
 
         <View style={styles.form}>
           <Text style={styles.label}>Name</Text>
-          <TextInput
-            placeholder=""
-            style={styles.input}
-            value={name}
-            onChangeText={setName}
-          />
+          <TextInput style={styles.input} value={name} onChangeText={setName} placeholder="Name" />
 
           <Text style={styles.label}>Gender</Text>
           <View style={styles.genderGroup}>
             {["Male", "Female", "Other"].map((g) => (
               <TouchableOpacity
                 key={g}
-                style={[
-                  styles.genderButton,
-                  gender === g && styles.genderButtonSelected,
-                ]}
+                style={[styles.genderButton, gender === g && styles.genderButtonSelected]}
                 onPress={() => setGender(g)}
               >
-                <Text
-                  style={[
-                    styles.genderText,
-                    gender === g && styles.genderTextSelected,
-                  ]}
-                >
-                  {g}
-                </Text>
+                <Text style={[styles.genderText, gender === g && styles.genderTextSelected]}>{g}</Text>
               </TouchableOpacity>
             ))}
           </View>
 
           <Text style={styles.label}>Age</Text>
-          <TextInput
-            placeholder=""
-            keyboardType="numeric"
-            style={styles.input}
-            value={age}
-            onChangeText={setAge}
-          />
+          <TextInput style={styles.input} keyboardType="numeric" value={age} onChangeText={setAge} />
 
           <Text style={styles.label}>Height (cm)</Text>
-          <TextInput
-            placeholder=""
-            keyboardType="numeric"
-            style={styles.input}
-            value={height}
-            onChangeText={setHeight}
-          />
+          <TextInput style={styles.input} keyboardType="numeric" value={height} onChangeText={setHeight} />
 
           <Text style={styles.label}>Weight (kg)</Text>
-          <TextInput
-            placeholder=""
-            keyboardType="numeric"
-            style={styles.input}
-            value={weight}
-            onChangeText={setWeight}
-          />
+          <TextInput style={styles.input} keyboardType="numeric" value={weight} onChangeText={setWeight} />
 
           <Text style={styles.label}>Email</Text>
-          <TextInput
-            placeholder=""
-            keyboardType="email-address"
-            style={styles.input}
-            value={email}
-            onChangeText={setEmail}
-          />
+          <TextInput style={styles.input} keyboardType="email-address" value={email} onChangeText={setEmail} />
 
           <Text style={styles.label}>Password</Text>
-          <TextInput
-            placeholder=""
-            secureTextEntry
-            style={styles.input}
-            value={password}
-            onChangeText={setPassword}
-          />
+          <TextInput style={styles.input} secureTextEntry value={password} onChangeText={setPassword} />
 
           <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.secondaryButton}>
-            <Text style={styles.secondaryText}>Create a new account</Text>
+          <TouchableOpacity style={styles.secondaryButton} onPress={onBack}>
+            <Text style={styles.secondaryText}>Connexion</Text>
           </TouchableOpacity>
+
         </View>
 
         {compte && (
