@@ -1,11 +1,17 @@
-import './App.css';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import Inscription from "./components/Inscription.jsx";
 
-function App() {
+export default function App() {
   return (
-    <div>
-
-    </div>
+    <View style={styles.container}>
+      <Inscription />
+    </View>
   );
 }
 
-export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
