@@ -36,7 +36,7 @@ export default function Inscription() {
         <View style={styles.form}>
           <Text style={styles.label}>Name</Text>
           <TextInput
-            placeholder="Name"
+            placeholder=""
             style={styles.input}
             value={name}
             onChangeText={setName}
