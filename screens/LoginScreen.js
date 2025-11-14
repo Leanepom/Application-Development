@@ -37,6 +37,7 @@ export default function LoginScreen({ onLogin, navigateToRegister, setLoading })
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <View style={styles.container}>
+        <Text style={styles.bigtitle}>Blueberry</Text>
         <Text style={styles.title}>Login</Text>
 
         <Text style={styles.label}>Email</Text>
@@ -79,10 +80,18 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 28,
-    color: "#3e6b47",
+    color: "#131F71",
     fontWeight: "700",
     textAlign: "center",
     marginBottom: 30,
+  },
+
+  bigtitle: { 
+    fontSize: 46, 
+    color: "#131F71",
+    fontWeight: "700",
+    marginBottom: 24, 
+    textAlign: "center" 
   },
 
   label: {
@@ -104,7 +113,7 @@ const styles = StyleSheet.create({
 
   button: {
     marginTop: 28,
-    backgroundColor: "#3e6b47",
+    backgroundColor: "#131F71",
     borderRadius: 8,
     paddingVertical: 14,
     alignItems: "center",
@@ -123,7 +132,7 @@ const styles = StyleSheet.create({
   },
 
   secondaryText: {
-    color: "#3e6b47",
+    color: "#131F71",
     fontWeight: "600",
     textTransform: "uppercase",
   },

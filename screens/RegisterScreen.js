@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   View,
+  Image,
   Text,
   TextInput,
   TouchableOpacity,
@@ -19,7 +20,7 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
     age: "",
     height: "",
     weight: "",
-    gender: "male",
+    gender: "",
     activityLevel: "medium",
   });
 
@@ -39,9 +40,11 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Create Account</Text>
-
+        <Image source={require("../assets/bluebell.png")} style={{ width: 120, height: 120, borderRadius: 10 }}/>
+        <Text style={styles.title}>Create Blueberry Account !</Text>
         <View style={styles.form}>
+          
+
           <Text style={styles.label}>First Name</Text>
           <TextInput
             style={styles.input}
@@ -143,6 +146,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "#ffffff",
+    
     alignItems: "center",
     justifyContent: "center",
     padding: 24,
@@ -150,7 +154,9 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 28,
-    color: "#3e6b47",
+    marginTop : 10,
+    color: "#131F71",
+    textAlign: "center",
     letterSpacing: 1,
     textTransform: "uppercase",
     marginBottom: 30,
@@ -194,7 +200,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  genderButtonSelected: { backgroundColor: "#3e6b47" },
+  genderButtonSelected: { backgroundColor: "#131F71" },
 
   genderText: { color: "#555" },
 
@@ -202,7 +208,7 @@ const styles = StyleSheet.create({
 
   button: {
     marginTop: 28,
-    backgroundColor: "#3e6b47",
+    backgroundColor: "#131F71",
     borderRadius: 8,
     paddingVertical: 14,
     alignItems: "center",
@@ -221,7 +227,7 @@ const styles = StyleSheet.create({
   },
 
   secondaryText: {
-    color: "#3e6b47",
+    color: "#131F71",
     fontWeight: "600",
     textTransform: "uppercase",
   },
