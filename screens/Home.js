@@ -87,6 +87,69 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
       <View style={[styles.infoCard, { borderColor: statusColor }]}>
         <Text style={styles.infoLabel}>BMI : <Text style={{ color: statusColor }}>{bmi}</Text></Text>
         <Text style={styles.infoLabel}>BMR : <Text style={{ color: "#007AFF" }}>{bmr.toFixed(0)} kcal</Text></Text>
+
+  {/* BARRE BMI */}
+  <View style={styles.scaleContainer}>
+  <Text style={styles.scaleLabel}>BMI Status</Text>
+
+  {/* Barre colorée */}
+  <View style={styles.scaleBar}>
+    <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 18.5 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 6.5 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 5 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 10 }]} />
+
+    {/* CURSEUR */}
+    <View
+      style={[
+        styles.indicator,
+        { left: `calc(${(bmi / 40) * 100}% - 1px)` }
+      ]}
+    />
+    </View>
+
+    {/* ÉTIQUETTES en dessous */}
+    <View style={styles.scaleLabelsRow}>
+      <Text style={styles.scaleNumber}>0</Text>
+      <Text style={styles.scaleNumber}>18.5</Text>
+      <Text style={styles.scaleNumber}>25</Text>
+      <Text style={styles.scaleNumber}>30</Text>
+      <Text style={styles.scaleNumber}>40</Text>
+    </View>
+  </View>
+
+
+  {/* BARRE BMR */}
+  <View style={styles.scaleContainer}>
+  <Text style={styles.scaleLabel}>BMR level</Text>
+
+  <View style={styles.scaleBar}>
+    <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 1 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 2 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 1 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 1 }]} />
+
+    {/* CURSEUR */}
+    <View
+      style={[
+        styles.indicator,
+        { left: `calc(${((bmr - 1000) / 2000) * 100}% - 1px)` }
+      ]}
+    />
+  </View>
+
+  {/* ÉTIQUETTES en dessous */}
+  <View style={styles.scaleLabelsRow}>
+    <Text style={styles.scaleNumber}>1000</Text>
+    <Text style={styles.scaleNumber}>1500</Text>
+    <Text style={styles.scaleNumber}>2000</Text>
+    <Text style={styles.scaleNumber}>2500</Text>
+    <Text style={styles.scaleNumber}>3000</Text>
+  </View>
+</View>
+
+
+
         <Text style={styles.infoLabel}>Calories totales : <Text style={{ color: "#FF9500" }}>{caloriesMax}</Text></Text>
         <Text style={styles.infoLabel}>Consommées : <Text style={{ color: "#FF3B30" }}>{caloriesConsumed}</Text></Text>
         <Text style={styles.infoLabel}>Restantes : <Text style={{ color: "#34C759" }}>{caloriesLeft}</Text></Text>
@@ -122,8 +185,11 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
 }
 
 const styles = StyleSheet.create({
+
   container: { padding: 20, backgroundColor: "#F8F9FA" },
+
   title: { fontSize: 24, fontWeight: "700", marginBottom: 20 },
+
   infoCard: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -131,18 +197,22 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 20,
   },
+
   infoLabel: { fontSize: 16, marginBottom: 6 },
+
   progressBar: {
     height: 12,
     backgroundColor: "#E5E5EA",
     borderRadius: 8,
     marginTop: 8,
   },
+
   progressFill: {
     height: 12,
     backgroundColor: "#34C759",
     borderRadius: 8,
   },
+
   profileButton: {
     backgroundColor: "#007AFF",
     padding: 12,
@@ -150,9 +220,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 24,
   },
+
   profileButtonText: { color: "#fff", fontWeight: "600" },
+
   carouselContainer: { marginBottom: 20 },
+
   carouselTitle: { fontSize: 20, fontWeight: "600", marginBottom: 10 },
+
   mealCard: {
     backgroundColor: "#fff",
     borderRadius: 12,
@@ -164,9 +238,13 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
+
   mealCardSelected: { borderColor: "#34C759", borderWidth: 2 },
+
   mealName: { fontSize: 16, fontWeight: "600", marginBottom: 6 },
+
   mealCalories: { fontSize: 14, color: "#555" },
+
   logoutButton: {
     backgroundColor: "#FF3B30",
     padding: 12,
@@ -175,5 +253,57 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 50,
   },
+
   logoutText: { color: "#fff", fontWeight: "600" },
+
+  scaleContainer: {
+  marginTop: 15,
+  marginBottom: 10,
+  },
+
+  scaleLabel: {
+    fontSize: 14,
+    fontWeight: "600",
+    marginBottom: 6,
+    color: "#444",
+  },
+
+  scaleBar: {
+    flexDirection: "row",
+    height: 12,
+    borderRadius: 6,
+    overflow: "hidden",
+    position: "relative",
+  },
+
+  scaleSegment: {
+    height: "100%",
+  },
+
+  indicator: {
+    position: "absolute",
+    top: -2,
+    width: 2,
+    height: 16,
+    backgroundColor: "black",
+  },
+
+
+  scaleLabelsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', 
+    marginTop: 4,
+    paddingHorizontal: 2,
+  },
+
+  scaleNumber: {
+    fontSize: 10,
+    color: '#444',
+    fontWeight: '600',
+    textAlign: 'center',
+    width: 30, 
+  },
+
+
+
 });
