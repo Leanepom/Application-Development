@@ -4,24 +4,24 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList } from "
 // Exemple de données de repas
 const MEALS = {
   breakfast: [
-    { id: 1, name: "Omelette aux légumes", calories: 250 },
-    { id: 2, name: "Porridge avoine-banane", calories: 300 },
-    { id: 3, name: "Smoothie protéiné", calories: 220 },
+    { id: 1, name: "Vegetable Omelette", calories: 250 },
+    { id: 2, name: "Oat–Banana Porridge", calories: 300 },
+    { id: 3, name: "Protein Smoothie", calories: 220 },
   ],
   lunch: [
-    { id: 4, name: "Poulet + Riz + Légumes", calories: 500 },
-    { id: 5, name: "Salade complète", calories: 400 },
-    { id: 6, name: "Pâtes thon-tomates", calories: 550 },
+    { id: 4, name: "Chicken + Rice + Vegetables", calories: 500 },
+    { id: 5, name: "Complete Salad", calories: 400 },
+    { id: 6, name: "Tuna–Tomato Pasta", calories: 550 },
   ],
   dinner: [
-    { id: 7, name: "Saumon + Quinoa", calories: 480 },
-    { id: 8, name: "Soupe + pain complet", calories: 300 },
-    { id: 9, name: "Wok de tofu", calories: 420 },
+    { id: 7, name: "Salmon + Quinoa", calories: 480 },
+    { id: 8, name: "Soup + Whole-Grain Bread", calories: 300 },
+    { id: 9, name: "Tofu Stir-Fry", calories: 420 },
   ],
   snacks: [
-    { id: 10, name: "Yaourt grec", calories: 150 },
-    { id: 11, name: "Barre protéinée", calories: 180 },
-    { id: 12, name: "Pommes + amandes", calories: 200 },
+    { id: 10, name: "Greek Yogurt", calories: 150 },
+    { id: 11, name: "Protein Bar", calories: 180 },
+    { id: 12, name: "Apples + Almonds", calories: 200 },
   ],
 };
 
