@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
   infoLabel: { fontSize: 16, marginBottom: 6 },
   profileButton: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#131F71",
     padding: 12,
     borderRadius: 10,
     alignItems: "center",
