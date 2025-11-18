@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   button: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#131F71",
     padding: 14,
     borderRadius: 8,
     alignItems: "center",
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
 
   checkboxSelected: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#131F71",
   },
 
   checkboxText: {
