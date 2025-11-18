@@ -116,7 +116,8 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
       <View style={[styles.infoCard, { borderColor: statusColor }]}>
         <Text style={styles.infoLabel}>BMI : <Text style={{ color: statusColor }}>{bmi}</Text></Text>
         <Text style={styles.infoLabel}>BMR : <Text style={{ color: "#007AFF" }}>{bmr.toFixed(0)} kcal</Text></Text>
-        {/* BARRE BMI */}
+        
+  {/* BARRE BMI */}
   <View style={styles.scaleContainer}>
   <Text style={styles.scaleLabel}>BMI Status</Text>
 
@@ -138,11 +139,11 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
 
     {/* ÉTIQUETTES en dessous */}
     <View style={styles.scaleLabelsRow}>
-      <Text style={styles.scaleNumber}>0</Text>
-      <Text style={styles.scaleNumber}>18.5</Text>
-      <Text style={styles.scaleNumber}>25</Text>
-      <Text style={styles.scaleNumber}>30</Text>
-      <Text style={styles.scaleNumber}>40</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: "0%", transform: [{ translateX: -5 }] }]}>0</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: `${(18.5 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>18.5</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: `${(25 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>25</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: `${(30 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>30</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: "100%", transform: [{ translateX: -20 }] }]}>40</Text>
     </View>
   </View>
 
@@ -151,11 +152,11 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
   <View style={styles.scaleContainer}>
   <Text style={styles.scaleLabel}>BMR level</Text>
 
-  <View style={styles.scaleBar}>
-    <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 1 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 2 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 1 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 1 }]} />
+  <View style={[styles.scaleBar, { width: 250 }]}>
+    <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 200 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 400 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 400 }]} />
+    <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 300 }]} />
 
     {/* CURSEUR */}
     <View
@@ -166,15 +167,16 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
     />
   </View>
 
-  {/* ÉTIQUETTES en dessous */}
-  <View style={styles.scaleLabelsRow}>
-    <Text style={styles.scaleNumber}>1000</Text>
-    <Text style={styles.scaleNumber}>1500</Text>
-    <Text style={styles.scaleNumber}>2000</Text>
-    <Text style={styles.scaleNumber}>2500</Text>
-    <Text style={styles.scaleNumber}>3000</Text>
+    {/* ÉTIQUETTES en dessous */}
+    <View style={{ width: 250, position: "relative", height: 16, marginTop: 4 }}>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: 0 }]}>1200</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: ((1400-1200)/1300)*250 - 15 }]}>1400</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: ((1800-1200)/1300)*250 - 15 }]}>1800</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: ((2200-1200)/1300)*250 - 15 }]}>2200</Text>
+      <Text style={[styles.scaleNumber, { position: "absolute", left: 250 - 30 }]}>2500</Text>
+    </View>
   </View>
-  </View>
+
         {/* CALORIES BAR */}
         <View style={{ marginTop: 20 }}>
           <Text style={styles.infoLabel}>Today calories</Text>
@@ -345,6 +347,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     marginTop: 4,
     paddingHorizontal: 2,
+    position: "relative", 
+    height: 16
   },
 
   scaleNumber: {
@@ -381,3 +385,4 @@ const styles = StyleSheet.create({
   },
 
 });
+
