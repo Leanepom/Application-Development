@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import {
   View,
   Image,
@@ -26,13 +28,24 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
 
-  const handleRegister = () => {
-    setLoading(true);
-    setTimeout(() => {
+  const handleRegister = async () => {
+  setLoading(true);
+
+  setTimeout(async () => {
+    try {
+      // enregistre les infos dans ton fichier texte
+      await AsyncStorage.setItem("user", JSON.stringify(form));
+
+      onRegister(form);     // callback de ton app
       setLoading(false);
-      onRegister(form);
-    }, 1200);
-  };
+
+    } catch (e) {
+      alert("Erreur enregistrement fichier :", e);
+      setLoading(false);
+    }
+  }, 1200);
+};
+
 
   return (
     <KeyboardAvoidingView

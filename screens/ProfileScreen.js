@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 
 export default function ProfileScreen({ user, updateUser, goBack, onLogout }) {
-  const [form, setForm] = useState({ ...user });
+  const [form, setForm] = useState({ ...user, mealPreferences: user.mealPreferences || [], });
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
+  
+  const handleTogglePreference = (category) => {
+    const updated = form.mealPreferences.includes(category)
+      ? form.mealPreferences.filter((c) => c !== category)
+      : [...form.mealPreferences, category];
+
+    setForm({ ...form, mealPreferences: updated });
+  };
 
   const handleSave = () => {
     updateUser(form);
@@ -12,42 +20,89 @@ export default function ProfileScreen({ user, updateUser, goBack, onLogout }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Mon Profil</Text>
+      <Text style={styles.title}>My Profile</Text>
 
-      <TextInput style={styles.input} value={form.firstName} onChangeText={(v) => handleChange("firstName", v)} placeholder="Prénom" />
-      <TextInput style={styles.input} value={form.lastName} onChangeText={(v) => handleChange("lastName", v)} placeholder="Nom" />
+      <TextInput style={styles.input} value={form.firstName} onChangeText={(v) => handleChange("firstName", v)} placeholder="First Name" />
+      <TextInput style={styles.input} value={form.lastName} onChangeText={(v) => handleChange("lastName", v)} placeholder="Last Name" />
       <TextInput
         style={styles.input}
         value={form.age.toString()}
         onChangeText={(v) => handleChange("age", v)}
-        placeholder="Âge"
+        placeholder="Age"
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
         value={form.height.toString()}
         onChangeText={(v) => handleChange("height", v)}
-        placeholder="Taille (cm)"
+        placeholder="Height (cm)"
         keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
         value={form.weight.toString()}
         onChangeText={(v) => handleChange("weight", v)}
-        placeholder="Poids (kg)"
+        placeholder="Weight (kg)"
         keyboardType="numeric"
       />
+      <View style={styles.genderGroup}>
+            {["male", "female", "other"].map((v) => (
+              <TouchableOpacity
+                key={v}
+                style={[
+                  styles.genderButton,
+                  form.gender === v && styles.genderButtonSelected,
+                ]}
+                onPress={() => handleChange("gender", v)}
+              >
+                <Text
+                  style={[
+                    styles.genderText,
+                    form.gender === v && styles.genderTextSelected,
+                  ]}
+                >
+                  {v.charAt(0).toUpperCase() + v.slice(1)}
+                </Text>
+              </TouchableOpacity>
+            ))}
+        </View>
+      <Text style={styles.sectionTitle}>Chose your meal plans</Text>
+
+      <View style={styles.checkboxContainer}>
+        {["Breakfast", "Lunch", "Dinner", "Snacks"].map((category) => {
+          const isSelected = form.mealPreferences.includes(category);
+          return (
+            <TouchableOpacity
+              key={category}
+              style={[
+                styles.checkbox,
+                isSelected && styles.checkboxSelected,
+              ]}
+              onPress={() => handleTogglePreference(category)}
+            >
+              <Text
+                style={[
+                  styles.checkboxText,
+                  isSelected && styles.checkboxTextSelected,
+                ]}
+              >
+                {category}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSave}>
-        <Text style={styles.buttonText}>Enregistrer</Text>
+        <Text style={styles.buttonText}>Keep modifications</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={[styles.button, styles.secondary]} onPress={goBack}>
-        <Text style={styles.buttonText}>Retour</Text>
+        <Text style={styles.buttonText}>Return</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={[styles.button, styles.logout]} onPress={onLogout}>
-        <Text style={styles.buttonText}>Déconnexion</Text>
+        <Text style={styles.buttonText}>Log out</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -72,4 +127,61 @@ const styles = StyleSheet.create({
   buttonText: { color: "#fff", fontSize: 16, fontWeight: "600" },
   secondary: { backgroundColor: "#8E8E93" },
   logout: { backgroundColor: "#FF3B30" },
+  
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "600",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+
+  checkboxContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginBottom: 20,
+  },
+
+  checkbox: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    backgroundColor: "#E5E5EA",
+    borderRadius: 8,
+    marginRight: 10,
+    marginBottom: 10,
+  },
+
+  checkboxSelected: {
+    backgroundColor: "#007AFF",
+  },
+
+  checkboxText: {
+    fontSize: 16,
+    color: "#333",
+  },
+
+  checkboxTextSelected: {
+    color: "#fff",
+    fontWeight: "600",
+  },
+
+  genderGroup: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 6,
+  },
+
+  genderButton: {
+    flex: 1,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 8,
+    paddingVertical: 10,
+    marginHorizontal: 4,
+    alignItems: "center",
+  },
+
+  genderButtonSelected: { backgroundColor: "#131F71" },
+
+  genderText: { color: "#555" },
+
+  genderTextSelected: { color: "#fff", fontWeight: "600" },
 });

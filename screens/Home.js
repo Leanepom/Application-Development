@@ -4,24 +4,24 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList } from "
 // Exemple de données de repas
 const MEALS = {
   breakfast: [
-    { id: 1, name: "Vegetable Omelette", calories: 250 },
-    { id: 2, name: "Oat–Banana Porridge", calories: 300 },
-    { id: 3, name: "Protein Smoothie", calories: 220 },
+    { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18 },
+    { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12 },
+    { id: 3, name: "Protein Smoothie", calories: 220, protein: 25 },
   ],
   lunch: [
-    { id: 4, name: "Chicken + Rice + Vegetables", calories: 500 },
-    { id: 5, name: "Complete Salad", calories: 400 },
-    { id: 6, name: "Tuna–Tomato Pasta", calories: 550 },
+    { id: 4, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38 },
+    { id: 5, name: "Complete Salad", calories: 400, protein: 22 },
+    { id: 6, name: "Tuna–Tomato Pasta", calories: 550, protein: 32 },
   ],
   dinner: [
-    { id: 7, name: "Salmon + Quinoa", calories: 480 },
-    { id: 8, name: "Soup + Whole-Grain Bread", calories: 300 },
-    { id: 9, name: "Tofu Stir-Fry", calories: 420 },
+    { id: 7, name: "Salmon + Quinoa", calories: 480, protein: 34 },
+    { id: 8, name: "Soup + Whole-Grain Bread", calories: 300, protein: 14 },
+    { id: 9, name: "Tofu Stir-Fry", calories: 420, protein: 20 },
   ],
   snacks: [
-    { id: 10, name: "Greek Yogurt", calories: 150 },
-    { id: 11, name: "Protein Bar", calories: 180 },
-    { id: 12, name: "Apples + Almonds", calories: 200 },
+    { id: 10, name: "Greek Yogurt", calories: 150, protein: 10 },
+    { id: 11, name: "Protein Bar", calories: 180, protein: 20 },
+    { id: 12, name: "Apples + Almonds", calories: 200, protein: 6 },
   ],
 };
 
@@ -36,21 +36,26 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
       : 10 * user.weight + 6.25 * user.height - 5 * user.age - 161;
   const caloriesMax = Math.round(bmr * 1.55);
 
-  // Calories consommées
-  const caloriesConsumed = selectedMeals.reduce((sum, m) => sum + m.calories, 0);
+  // Objectif protéines (1.6 g/kg)
+  const proteinGoal = Math.round(user.weight * 1.6);
+
+  // Totaux consommés
+  const caloriesConsumed = selectedMeals.reduce((s, m) => s + m.calories, 0);
+  const proteinConsumed = selectedMeals.reduce((s, m) => s + m.protein, 0);
+
   const caloriesLeft = Math.max(0, caloriesMax - caloriesConsumed);
+
+
 
   const toggleMeal = (meal) => {
     if (selectedMeals.find((m) => m.id === meal.id)) {
       setSelectedMeals(selectedMeals.filter((m) => m.id !== meal.id));
-    } else if (caloriesConsumed + meal.calories <= caloriesMax) {
-      setSelectedMeals([...selectedMeals, meal]);
     } else {
-      alert("Tu dépasses ton quota calorique 😅");
+      setSelectedMeals([...selectedMeals, meal]);
     }
   };
 
-  // Rendu d'un carrousel horizontal
+  // Rendu carrousel
   const renderCarousel = (title, data) => (
     <View style={styles.carouselContainer}>
       <Text style={styles.carouselTitle}>{title}</Text>
@@ -58,6 +63,7 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
         data={data}
         horizontal
         keyExtractor={(item) => item.id.toString()}
+        showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
           const selected = selectedMeals.some((m) => m.id === item.id);
           return (
@@ -67,10 +73,10 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
             >
               <Text style={styles.mealName}>{item.name}</Text>
               <Text style={styles.mealCalories}>{item.calories} kcal</Text>
+              <Text style={styles.mealProtein}>{item.protein} g protéines</Text>
             </TouchableOpacity>
           );
         }}
-        showsHorizontalScrollIndicator={false}
       />
     </View>
   );
@@ -78,17 +84,39 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
   // Couleur selon statut
   const statusColor =
     bmi < 18.5 ? "#00BFFF" : bmi < 25 ? "#34C759" : bmi < 30 ? "#FF9500" : "#FF3B30";
+// Logique barres calories
+  const calRatio = caloriesMax > 0 ? caloriesConsumed / caloriesMax : 0;
+  const calRemaining = Math.max(0, 1 - calRatio);
+  const calSurplusRatio =
+    caloriesConsumed > caloriesMax ? (caloriesConsumed - caloriesMax) / caloriesMax : 0;
+
+  let calColor = "#34C759";
+  if (caloriesConsumed >= caloriesMax) calColor = "#FF3B30";
+  else if (calRemaining <= 0.2) calColor = "#FF9500";
+
+  // Logique barre protéines
+  const protRatio = proteinConsumed / proteinGoal;
+  const protRemaining = Math.max(0, 1 - protRatio);
+  const protSurplusRatio =
+    proteinConsumed > proteinGoal ? (proteinConsumed - proteinGoal) / proteinGoal : 0;
+
+  let protColor = "#34C759";
+  if (proteinConsumed >= proteinGoal) protColor = "#FF3B30";
+  else if (protRemaining <= 0.2) protColor = "#FF9500";
+
+  // Percentages BMI/BMR
+  const bmiPct = Math.min(100, Math.max(0, (bmi / 40) * 100));
+  const bmrPct = Math.min(100, Math.max(0, ((bmr - 1000) / 2000) * 100));
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Bonjour, {user.firstName} 👋</Text>
+      <Text style={styles.title}>Hi, {user.firstName} 👋</Text>
 
       {/* Section infos santé */}
       <View style={[styles.infoCard, { borderColor: statusColor }]}>
         <Text style={styles.infoLabel}>BMI : <Text style={{ color: statusColor }}>{bmi}</Text></Text>
         <Text style={styles.infoLabel}>BMR : <Text style={{ color: "#007AFF" }}>{bmr.toFixed(0)} kcal</Text></Text>
-
-  {/* BARRE BMI */}
+        {/* BARRE BMI */}
   <View style={styles.scaleContainer}>
   <Text style={styles.scaleLabel}>BMI Status</Text>
 
@@ -146,50 +174,107 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
     <Text style={styles.scaleNumber}>2500</Text>
     <Text style={styles.scaleNumber}>3000</Text>
   </View>
-</View>
+  </View>
+        {/* CALORIES BAR */}
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles.infoLabel}>Today calories</Text>
 
+          <View style={styles.calorieRow}>
+            <View style={styles.calorieBar}>
+              {caloriesConsumed <= caloriesMax && (
+                <View
+                  style={[
+                    styles.calorieFill,
+                    { width: `${Math.max(0, calRemaining * 100)}%`, backgroundColor: calColor },
+                  ]}
+                />
+              )}
 
+              {caloriesConsumed > caloriesMax && (
+                <View
+                  style={[
+                    styles.calorieFill,
+                    {
+                      width: `${Math.min(200, calSurplusRatio * 100)}%`,
+                      backgroundColor: "#FF3B30",
+                      position: "absolute",
+                      right: 0,
+                    },
+                  ]}
+                />
+              )}
+            </View>
 
-        <Text style={styles.infoLabel}>Calories totales : <Text style={{ color: "#FF9500" }}>{caloriesMax}</Text></Text>
-        <Text style={styles.infoLabel}>Consommées : <Text style={{ color: "#FF3B30" }}>{caloriesConsumed}</Text></Text>
-        <Text style={styles.infoLabel}>Restantes : <Text style={{ color: "#34C759" }}>{caloriesLeft}</Text></Text>
+            <Text style={styles.calorieText}>
+              {caloriesConsumed} / {caloriesMax} kcal
+            </Text>
+          </View>
+        </View>
 
-        {/* Barre de progression */}
-        <View style={styles.progressBar}>
-          <View
-            style={[
-              styles.progressFill,
-              { width: `${(caloriesConsumed / caloriesMax) * 100}%` },
-            ]}
-          />
+        {/* PROTEIN BAR */}
+        <View style={{ marginTop: 15 }}>
+          <Text style={styles.infoLabel}>Today protein</Text>
+
+          <View style={styles.calorieRow}>
+            <View style={styles.calorieBar}>
+              {proteinConsumed <= proteinGoal && (
+                <View
+                  style={[
+                    styles.calorieFill,
+                    { width: `${Math.max(0, protRemaining * 100)}%`, backgroundColor: protColor },
+                  ]}
+                />
+              )}
+
+              {proteinConsumed > proteinGoal && (
+                <View
+                  style={[
+                    styles.calorieFill,
+                    {
+                      width: `${Math.min(200, protSurplusRatio * 100)}%`,
+                      backgroundColor: "#FF3B30",
+                      position: "absolute",
+                      right: 0,
+                    },
+                  ]}
+                />
+              )}
+            </View>
+
+            <Text style={styles.calorieText}>
+              {proteinConsumed} / {proteinGoal} g
+            </Text>
+          </View>
         </View>
       </View>
 
+
       {/* Bouton profil */}
       <TouchableOpacity style={styles.profileButton} onPress={navigateToProfile}>
-        <Text style={styles.profileButtonText}>Modifier mon profil</Text>
+        <Text style={styles.profileButtonText}>Change my profile</Text>
       </TouchableOpacity>
 
-      {/* Carrousels */}
-      {renderCarousel("🥣 Breakfast", MEALS.breakfast)}
-      {renderCarousel("🍛 Lunch", MEALS.lunch)}
-      {renderCarousel("🍲 Dinner", MEALS.dinner)}
-      {renderCarousel("🍪 Snacks", MEALS.snacks)}
+      {/* CAROUSELS AFFICHÉS SELON LES PRÉFÉRENCES */}
+      {user.mealPreferences?.includes("Breakfast") &&
+        renderCarousel("🥣 Breakfast", MEALS.breakfast)}
 
-      {/* Déconnexion */}
-      <TouchableOpacity style={[styles.logoutButton]} onPress={onLogout}>
-        <Text style={styles.logoutText}>Se déconnecter</Text>
-      </TouchableOpacity>
+      {user.mealPreferences?.includes("Lunch") &&
+        renderCarousel("🍛 Lunch", MEALS.lunch)}
+
+      {user.mealPreferences?.includes("Dinner") &&
+        renderCarousel("🍲 Dinner", MEALS.dinner)}
+
+      {user.mealPreferences?.includes("Snacks") &&
+        renderCarousel("🍪 Snacks", MEALS.snacks)}
+
+
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-
   container: { padding: 20, backgroundColor: "#F8F9FA" },
-
   title: { fontSize: 24, fontWeight: "700", marginBottom: 20 },
-
   infoCard: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -197,22 +282,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 20,
   },
-
   infoLabel: { fontSize: 16, marginBottom: 6 },
-
-  progressBar: {
-    height: 12,
-    backgroundColor: "#E5E5EA",
-    borderRadius: 8,
-    marginTop: 8,
-  },
-
-  progressFill: {
-    height: 12,
-    backgroundColor: "#34C759",
-    borderRadius: 8,
-  },
-
   profileButton: {
     backgroundColor: "#007AFF",
     padding: 12,
@@ -220,13 +290,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 24,
   },
-
   profileButtonText: { color: "#fff", fontWeight: "600" },
-
   carouselContainer: { marginBottom: 20 },
-
   carouselTitle: { fontSize: 20, fontWeight: "600", marginBottom: 10 },
-
   mealCard: {
     backgroundColor: "#fff",
     borderRadius: 12,
@@ -238,24 +304,9 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-
   mealCardSelected: { borderColor: "#34C759", borderWidth: 2 },
-
   mealName: { fontSize: 16, fontWeight: "600", marginBottom: 6 },
-
   mealCalories: { fontSize: 14, color: "#555" },
-
-  logoutButton: {
-    backgroundColor: "#FF3B30",
-    padding: 12,
-    borderRadius: 10,
-    alignItems: "center",
-    marginTop: 10,
-    marginBottom: 50,
-  },
-
-  logoutText: { color: "#fff", fontWeight: "600" },
-
   scaleContainer: {
   marginTop: 15,
   marginBottom: 10,
@@ -303,7 +354,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 30, 
   },
-
-
+  // CAL & PROT BARS
+  calorieRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 8,
+  },
+  calorieBar: {
+    flex: 1,
+    height: 16,
+    backgroundColor: "#E5E5EA",
+    borderRadius: 10,
+    overflow: "hidden",
+    marginRight: 10,
+    position: "relative",
+  },
+  calorieFill: {
+    height: "100%",
+    borderRadius: 10,
+  },
+  calorieText: {
+    fontSize: 14,
+    fontWeight: "600",
+    width: 110,
+    textAlign: "right",
+  },
 
 });

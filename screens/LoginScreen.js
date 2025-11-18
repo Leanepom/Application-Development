@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   Text,
@@ -9,25 +10,39 @@ import {
   Platform,
 } from "react-native";
 
+async function loginUser(inputEmail, inputPassword) {
+  // Récupération du compte enregistré
+  const savedUserJSON = await AsyncStorage.getItem("user");
+
+  if (!savedUserJSON) {
+    throw new Error("Aucun utilisateur enregistré.");
+  }
+
+  const savedUser = JSON.parse(savedUserJSON);
+
+  // Vérification email & mot de passe
+  if (savedUser.email === inputEmail && savedUser.password === inputPassword) {
+    return savedUser;  // On retourne toutes les infos du compte
+  } else {
+    throw new Error("Email ou mot de passe incorrect.");
+  }
+}
+
 export default function LoginScreen({ onLogin, navigateToRegister, setLoading }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     setLoading(true);
     // Mock login simulation
-    setTimeout(() => {
+    setTimeout(async () => {
       setLoading(false);
-      onLogin({
-        firstName: "Alex",
-        lastName: "Martin",
-        email,
-        age: 25,
-        height: 175,
-        weight: 70,
-        gender: "male",
-        activityLevel: "medium",
-      });
+      try {
+        const user = await loginUser(email, password);
+        onLogin(user);    // tu appelles ton callback pour ouvrir l'app
+      } catch (err) {
+        alert(err.message);
+      }
     }, 1200);
   };
 
