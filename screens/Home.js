@@ -4,27 +4,54 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList } from "
 // Exemple de données de repas
 const MEALS = {
   breakfast: [
+    { id: 0, name: "Coffee", calories: 2, protein: 0 },
     { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18 },
     { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12 },
     { id: 3, name: "Protein Smoothie", calories: 220, protein: 25 },
+    { id: 4, name: "Croissant", calories: 250, protein: 4.5 },
+    { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5 },
+    { id: 6, name: "Pancakes", calories: 245, protein: 7 },
+    { id: 7, name: "Bread with butter and jam", calories: 225, protein: 4.5}, 
+    { id: 8, name: "Cereal", calories: 190, protein: 8 },
+    { id: 9, name: "Hot chocolate", calories: 135, protein: 6.5 }
   ],
   lunch: [
-    { id: 4, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38 },
-    { id: 5, name: "Complete Salad", calories: 400, protein: 22 },
-    { id: 6, name: "Tuna–Tomato Pasta", calories: 550, protein: 32 },
+    { id: 10, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38 },
+    { id: 11, name: "Tuna–Tomato Pasta", calories: 550, protein: 32 },
+    { id: 12, name: "1/2 Four-cheese pizza", calories: 475, protein: 18.5 },
+    { id: 13, name: "Lasagna bolognese", calories: 390, protein: 22 },
+    { id: 14, name: "Caesar salad", calories: 600, protein: 30 },
+    { id: 15, name: "Tartiflette", calories: 675, protein: 27.5 },
+    { id: 16, name: "Sushi + steamed rice + miso soup + Japanese salad", calories: 550, protein: 21 },
+    { id: 17, name: "Salmon and avocado wrap", calories: 365, protein: 21 },
+    { id: 18, name: "Gnocchi with chicken and creamy parmesan sauce", calories: 500, protein: 35 }, 
+    { id: 19, name: "Roast duck breast with celery root mash", calories: 575, protein: 36.5 }
   ],
   dinner: [
-    { id: 7, name: "Salmon + Quinoa", calories: 480, protein: 34 },
-    { id: 8, name: "Soup + Whole-Grain Bread", calories: 300, protein: 14 },
-    { id: 9, name: "Tofu Stir-Fry", calories: 420, protein: 20 },
+    { id: 20, name: "Salmon + Quinoa", calories: 480, protein: 34 },
+    { id: 21, name: "Soup + Whole-Grain Bread", calories: 300, protein: 14 },
+    { id: 22, name: "Tofu Stir-Fry", calories: 420, protein: 20 },
+    { id: 23, name: "Creamy pumpkin and potato soup", calories: 150, protein: 2.5 },
+    { id: 24, name: "Quiche Lorraine", calories: 400, protein: 9 },
+    { id: 25, name: "Complete Salad", calories: 400, protein: 22 },
+    { id: 26, name: "Tuna cake", calories: 300, protein: 21 }, 
+    { id: 27, name: "Oven-roasted turkey roast + vegetable", calories: 325, protein: 32 },
+    { id: 28, name: "Eggplant & Lentil Curry", calories: 400, protein: 20 },
+    { id: 29, name: "Roast chicken with sweet potato mash", calories: 375, protein: 35},
   ],
   snacks: [
-    { id: 10, name: "Greek Yogurt", calories: 150, protein: 10 },
-    { id: 11, name: "Protein Bar", calories: 180, protein: 20 },
-    { id: 12, name: "Apples + Almonds", calories: 200, protein: 6 },
+    { id: 30, name: "Greek Yogurt", calories: 150, protein: 10 },
+    { id: 31, name: "Protein Bar", calories: 180, protein: 20 },
+    { id: 32, name: "Apples + Almonds", calories: 200, protein: 6 },
+    { id: 33, name: "Brownie", calories: 400, protein: 5 },
+    { id: 34, name: "Hummus with vegetable sticks", calories: 165, protein: 4.5 },
+    { id: 35, name: "Carrot sticks with tzatziki", calories: 90, protein: 3 },
+    { id: 36, name: "Deviled eggs", calories: 200, protein: 13 },
+    { id: 37, name: "Protein muffin", calories: 150, protein: 10 },
+    { id: 38, name: "Sweet Popcorn", calories: 140, protein: 2 },
+    { id: 39, name: "Olives with feta cheese", calories: 150, protein: 5 }
   ],
 };
-
 export default function HomeScreen({ user, navigateToProfile, onLogout }) {
   const [selectedMeals, setSelectedMeals] = useState([]);
 
@@ -385,4 +412,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
 
