@@ -5,7 +5,7 @@ const MEALS = {
   breakfast: [
     { id: 0, name: "Coffee", calories: 2, protein: 0, image:require("../assets/coffee.jpg") },
     { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18, image:require("../assets/Vegetable-omelette.jpg") },
-    { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12, image:require("../assets/noimage.png") },
+    { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12, image:require("../assets/Oat-banana-porridge.webp") },
     { id: 3, name: "Protein Smoothie", calories: 220, protein: 25, image:require("../assets/Protein-Smoothie.jpg") },
     { id: 4, name: "Croissant", calories: 250, protein: 4.5, image:require("../assets/Croissant.jpg") },
     { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5, image:require("../assets/Natural-yogurt.webp") },
@@ -412,6 +412,7 @@ const styles = StyleSheet.create({
   },
 
 });
+
 
 
 
