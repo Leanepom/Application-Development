@@ -10,7 +10,7 @@ const MEALS = {
     { id: 4, name: "Croissant", calories: 250, protein: 4.5, image:require("../assets/Croissant.jpg") },
     { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5, image:require("../assets/Natural-yogurt.webp") },
     { id: 6, name: "Pancakes", calories: 245, protein: 7, image:require("../assets/Pancakes.jpg") },
-    { id: 7, name: "Bread with butter and jam", calories: 225, protein: 4.5, image:require("../assets/noimage.png")}, 
+    { id: 7, name: "Bread with butter and jam", calories: 225, protein: 4.5, image:require("../assets/Bread-butter-jam.jpg")}, 
     { id: 8, name: "Cereal", calories: 190, protein: 8, image:require("../assets/Cereal.png") },
     { id: 9, name: "Hot chocolate", calories: 135, protein: 6.5, image:require("../assets/hot-chocolate.webp") }
   ],
@@ -412,6 +412,7 @@ const styles = StyleSheet.create({
   },
 
 });
+
 
 
 
