@@ -1,58 +1,58 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList } from "react-native";
+import { View, Text,Image, TouchableOpacity, StyleSheet, ScrollView, FlatList } from "react-native";
 
-// Exemple de données de repas
 const MEALS = {
   breakfast: [
-    { id: 0, name: "Coffee", calories: 2, protein: 0 },
-    { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18 },
-    { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12 },
-    { id: 3, name: "Protein Smoothie", calories: 220, protein: 25 },
-    { id: 4, name: "Croissant", calories: 250, protein: 4.5 },
-    { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5 },
-    { id: 6, name: "Pancakes", calories: 245, protein: 7 },
-    { id: 7, name: "Bread with butter and jam", calories: 225, protein: 4.5}, 
-    { id: 8, name: "Cereal", calories: 190, protein: 8 },
-    { id: 9, name: "Hot chocolate", calories: 135, protein: 6.5 }
+    { id: 0, name: "Coffee", calories: 2, protein: 0, image:require("../assets/noimage.png") },
+    { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18, image:require("../assets/noimage.png") },
+    { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12, image:require("../assets/noimage.png") },
+    { id: 3, name: "Protein Smoothie", calories: 220, protein: 25, image:require("../assets/noimage.png") },
+    { id: 4, name: "Croissant", calories: 250, protein: 4.5, image:require("../assets/noimage.png") },
+    { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5, image:require("../assets/noimage.png") },
+    { id: 6, name: "Pancakes", calories: 245, protein: 7, image:require("../assets/noimage.png") },
+    { id: 7, name: "Bread with butter and jam", calories: 225, protein: 4.5, image:require("../assets/noimage.png")}, 
+    { id: 8, name: "Cereal", calories: 190, protein: 8, image:require("../assets/noimage.png") },
+    { id: 9, name: "Hot chocolate", calories: 135, protein: 6.5, image:require("../assets/noimage.png") }
   ],
   lunch: [
-    { id: 10, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38 },
-    { id: 11, name: "Tuna–Tomato Pasta", calories: 550, protein: 32 },
-    { id: 12, name: "1/2 Four-cheese pizza", calories: 475, protein: 18.5 },
-    { id: 13, name: "Lasagna bolognese", calories: 390, protein: 22 },
-    { id: 14, name: "Caesar salad", calories: 600, protein: 30 },
-    { id: 15, name: "Tartiflette", calories: 675, protein: 27.5 },
-    { id: 16, name: "Sushi + steamed rice + miso soup + Japanese salad", calories: 550, protein: 21 },
-    { id: 17, name: "Salmon and avocado wrap", calories: 365, protein: 21 },
-    { id: 18, name: "Gnocchi with chicken and creamy parmesan sauce", calories: 500, protein: 35 }, 
-    { id: 19, name: "Roast duck breast with celery root mash", calories: 575, protein: 36.5 }
+    { id: 10, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38, image:require("../assets/noimage.png") },
+    { id: 11, name: "Tuna–Tomato Pasta", calories: 550, protein: 32, image:require("../assets/noimage.png") },
+    { id: 12, name: "1/2 Four-cheese pizza", calories: 475, protein: 18.5, image:require("../assets/noimage.png") },
+    { id: 13, name: "Lasagna bolognese", calories: 390, protein: 22, image:require("../assets/noimage.png") },
+    { id: 14, name: "Caesar salad", calories: 600, protein: 30, image:require("../assets/noimage.png") },
+    { id: 15, name: "Tartiflette", calories: 675, protein: 27.5, image:require("../assets/noimage.png") },
+    { id: 16, name: "Sushi + steamed rice + miso soup + Japanese salad", calories: 550, protein: 21, image:require("../assets/noimage.png") },
+    { id: 17, name: "Salmon and avocado wrap", calories: 365, protein: 21, image:require("../assets/noimage.png") },
+    { id: 18, name: "Gnocchi with chicken and creamy parmesan sauce", calories: 500, protein: 35, image:require("../assets/noimage.png") }, 
+    { id: 19, name: "Roast duck breast with celery root mash", calories: 575, protein: 36.5, image:require("../assets/noimage.png") }
   ],
   dinner: [
-    { id: 20, name: "Salmon + Quinoa", calories: 480, protein: 34 },
-    { id: 21, name: "Soup + Whole-Grain Bread", calories: 300, protein: 14 },
-    { id: 22, name: "Tofu Stir-Fry", calories: 420, protein: 20 },
-    { id: 23, name: "Creamy pumpkin and potato soup", calories: 150, protein: 2.5 },
-    { id: 24, name: "Quiche Lorraine", calories: 400, protein: 9 },
-    { id: 25, name: "Complete Salad", calories: 400, protein: 22 },
-    { id: 26, name: "Tuna cake", calories: 300, protein: 21 }, 
-    { id: 27, name: "Oven-roasted turkey roast + vegetable", calories: 325, protein: 32 },
-    { id: 28, name: "Eggplant & Lentil Curry", calories: 400, protein: 20 },
-    { id: 29, name: "Roast chicken with sweet potato mash", calories: 375, protein: 35},
+    { id: 20, name: "Salmon + Quinoa", calories: 480, protein: 34, image:require("../assets/noimage.png") },
+    { id: 21, name: "Soup + Whole-Grain Bread", calories: 300, protein: 14, image:require("../assets/noimage.png") },
+    { id: 22, name: "Tofu Stir-Fry", calories: 420, protein: 20, image:require("../assets/noimage.png") },
+    { id: 23, name: "Creamy pumpkin and potato soup", calories: 150, protein: 2.5, image:require("../assets/noimage.png") },
+    { id: 24, name: "Quiche Lorraine", calories: 400, protein: 9, image:require("../assets/noimage.png") },
+    { id: 25, name: "Complete Salad", calories: 400, protein: 22, image:require("../assets/noimage.png") },
+    { id: 26, name: "Tuna cake", calories: 300, protein: 21, image:require("../assets/noimage.png") }, 
+    { id: 27, name: "Oven-roasted turkey roast + vegetable", calories: 325, protein: 32, image:require("../assets/noimage.png") },
+    { id: 28, name: "Eggplant & Lentil Curry", calories: 400, protein: 20, image:require("../assets/noimage.png") },
+    { id: 29, name: "Roast chicken with sweet potato mash", calories: 375, protein: 35, image:require("../assets/noimage.png")},
   ],
   snacks: [
-    { id: 30, name: "Greek Yogurt", calories: 150, protein: 10 },
-    { id: 31, name: "Protein Bar", calories: 180, protein: 20 },
-    { id: 32, name: "Apples + Almonds", calories: 200, protein: 6 },
-    { id: 33, name: "Brownie", calories: 400, protein: 5 },
-    { id: 34, name: "Hummus with vegetable sticks", calories: 165, protein: 4.5 },
-    { id: 35, name: "Carrot sticks with tzatziki", calories: 90, protein: 3 },
-    { id: 36, name: "Deviled eggs", calories: 200, protein: 13 },
-    { id: 37, name: "Protein muffin", calories: 150, protein: 10 },
-    { id: 38, name: "Sweet Popcorn", calories: 140, protein: 2 },
-    { id: 39, name: "Olives with feta cheese", calories: 150, protein: 5 }
+    { id: 30, name: "Greek Yogurt", calories: 150, protein: 10, image:require("../assets/noimage.png") },
+    { id: 31, name: "Protein Bar", calories: 180, protein: 20, image:require("../assets/noimage.png") },
+    { id: 32, name: "Apples + Almonds", calories: 200, protein: 6, image:require("../assets/noimage.png") },
+    { id: 33, name: "Brownie", calories: 400, protein: 5, image:require("../assets/noimage.png") },
+    { id: 34, name: "Hummus with vegetable sticks", calories: 165, protein: 4.5, image:require("../assets/noimage.png") },
+    { id: 35, name: "Carrot sticks with tzatziki", calories: 90, protein: 3, image:require("../assets/noimage.png") },
+    { id: 36, name: "Deviled eggs", calories: 200, protein: 13, image:require("../assets/noimage.png") },
+    { id: 37, name: "Protein muffin", calories: 150, protein: 10, image:require("../assets/noimage.png") },
+    { id: 38, name: "Sweet Popcorn", calories: 140, protein: 2, image:require("../assets/noimage.png") },
+    { id: 39, name: "Olives with feta cheese", calories: 150, protein: 5, image:require("../assets/noimage.png") }
   ],
 };
-export default function HomeScreen({ user, navigateToProfile, onLogout }) {
+
+export default function HomeScreen({ user, navigateToProfile}) {
   const [selectedMeals, setSelectedMeals] = useState([]);
 
   // Calculs
@@ -98,6 +98,7 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
               style={[styles.mealCard, selected && styles.mealCardSelected]}
               onPress={() => toggleMeal(item)}
             >
+              <Image source={item.image} style={{ width: 150, height: 120, borderRadius: 10 }}/>
               <Text style={styles.mealName}>{item.name}</Text>
               <Text style={styles.mealCalories}>{item.calories} kcal</Text>
               <Text style={styles.mealProtein}>{item.protein} g protéines</Text>
@@ -137,14 +138,14 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+    <Image source={require("../assets/bluebell.png")} style={{ width: 120, height: 120, borderRadius: 10 }}/>
       <Text style={styles.title}>Hi, {user.firstName} 👋</Text>
 
       {/* Section infos santé */}
       <View style={[styles.infoCard, { borderColor: statusColor }]}>
         <Text style={styles.infoLabel}>BMI : <Text style={{ color: statusColor }}>{bmi}</Text></Text>
         <Text style={styles.infoLabel}>BMR : <Text style={{ color: "#007AFF" }}>{bmr.toFixed(0)} kcal</Text></Text>
-        
-  {/* BARRE BMI */}
+        {/* BARRE BMI */}
   <View style={styles.scaleContainer}>
   <Text style={styles.scaleLabel}>BMI Status</Text>
 
@@ -194,8 +195,8 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
     />
   </View>
 
-    {/* ÉTIQUETTES en dessous */}
-    <View style={{ width: 250, position: "relative", height: 16, marginTop: 4 }}>
+  {/* ÉTIQUETTES en dessous */}
+  <View style={{ width: 250, position: "relative", height: 16, marginTop: 4 }}>
       <Text style={[styles.scaleNumber, { position: "absolute", left: 0 }]}>1200</Text>
       <Text style={[styles.scaleNumber, { position: "absolute", left: ((1400-1200)/1300)*250 - 15 }]}>1400</Text>
       <Text style={[styles.scaleNumber, { position: "absolute", left: ((1800-1200)/1300)*250 - 15 }]}>1800</Text>
@@ -203,7 +204,6 @@ export default function HomeScreen({ user, navigateToProfile, onLogout }) {
       <Text style={[styles.scaleNumber, { position: "absolute", left: 250 - 30 }]}>2500</Text>
     </View>
   </View>
-
         {/* CALORIES BAR */}
         <View style={{ marginTop: 20 }}>
           <Text style={styles.infoLabel}>Today calories</Text>
@@ -412,5 +412,3 @@ const styles = StyleSheet.create({
   },
 
 });
-
-
