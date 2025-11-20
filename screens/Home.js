@@ -28,7 +28,7 @@ const MEALS = {
   ],
   dinner: [
     { id: 20, name: "Salmon + Quinoa", calories: 480, protein: 34, image:require("../assets/noimage.png") },
-    { id: 21, name: "Soup + Whole-Grain Bread", calories: 300, protein: 14, image:require("../assets/noimage.png") },
+    { id: 21, name: "Grilled veal with roasted potatoes", calories: 500, protein: 36, image:require("../assets/noimage.png") },
     { id: 22, name: "Tofu Stir-Fry", calories: 420, protein: 20, image:require("../assets/noimage.png") },
     { id: 23, name: "Creamy pumpkin and potato soup", calories: 150, protein: 2.5, image:require("../assets/noimage.png") },
     { id: 24, name: "Quiche Lorraine", calories: 400, protein: 9, image:require("../assets/noimage.png") },
@@ -412,4 +412,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
 
