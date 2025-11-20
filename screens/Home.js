@@ -16,7 +16,7 @@ const MEALS = {
   ],
   lunch: [
     { id: 10, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38, image:require("../assets/Chicken-Rice-Vegetables.jpg") },
-    { id: 11, name: "Tuna–Tomato Pasta", calories: 550, protein: 32, image:require("../assets/noimage.png") },
+    { id: 11, name: "Tuna–Tomato Pasta", calories: 550, protein: 32, image:require("../assets/Tuna-tomato-pasta.jpg") },
     { id: 12, name: "1/2 Four-cheese pizza", calories: 475, protein: 18.5, image:require("../assets/Four-cheese-pizza.webp") },
     { id: 13, name: "Lasagna bolognese", calories: 390, protein: 22, image:require("../assets/Lasagna-bolognese.jpg") },
     { id: 14, name: "Caesar salad", calories: 600, protein: 30, image:require("../assets/Caesar-salad.webp") },
@@ -412,6 +412,7 @@ const styles = StyleSheet.create({
   },
 
 });
+
 
 
 
