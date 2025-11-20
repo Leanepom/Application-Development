@@ -3,52 +3,52 @@ import { View, Text,Image, TouchableOpacity, StyleSheet, ScrollView, FlatList } 
 
 const MEALS = {
   breakfast: [
-    { id: 0, name: "Coffee", calories: 2, protein: 0, image:require("../assets/noimage.png") },
-    { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18, image:require("../assets/noimage.png") },
+    { id: 0, name: "Coffee", calories: 2, protein: 0, image:require("../assets/coffee.jpg") },
+    { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18, image:require("../assets/Vegetable-omelette.jpg") },
     { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12, image:require("../assets/noimage.png") },
-    { id: 3, name: "Protein Smoothie", calories: 220, protein: 25, image:require("../assets/noimage.png") },
-    { id: 4, name: "Croissant", calories: 250, protein: 4.5, image:require("../assets/noimage.png") },
-    { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5, image:require("../assets/noimage.png") },
-    { id: 6, name: "Pancakes", calories: 245, protein: 7, image:require("../assets/noimage.png") },
+    { id: 3, name: "Protein Smoothie", calories: 220, protein: 25, image:require("../assets/Protein-Smoothie.jpg") },
+    { id: 4, name: "Croissant", calories: 250, protein: 4.5, image:require("../assets/Croissant.jpg") },
+    { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5, image:require("../assets/Natural-yogurt.webp") },
+    { id: 6, name: "Pancakes", calories: 245, protein: 7, image:require("../assets/Pancakes.jpg") },
     { id: 7, name: "Bread with butter and jam", calories: 225, protein: 4.5, image:require("../assets/noimage.png")}, 
-    { id: 8, name: "Cereal", calories: 190, protein: 8, image:require("../assets/noimage.png") },
-    { id: 9, name: "Hot chocolate", calories: 135, protein: 6.5, image:require("../assets/noimage.png") }
+    { id: 8, name: "Cereal", calories: 190, protein: 8, image:require("../assets/Cereal.png") },
+    { id: 9, name: "Hot chocolate", calories: 135, protein: 6.5, image:require("../assets/hot-chocolate.webp") }
   ],
   lunch: [
-    { id: 10, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38, image:require("../assets/noimage.png") },
+    { id: 10, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38, image:require("../assets/Chicken-Rice-Vegetables.jpg") },
     { id: 11, name: "Tuna–Tomato Pasta", calories: 550, protein: 32, image:require("../assets/noimage.png") },
-    { id: 12, name: "1/2 Four-cheese pizza", calories: 475, protein: 18.5, image:require("../assets/noimage.png") },
-    { id: 13, name: "Lasagna bolognese", calories: 390, protein: 22, image:require("../assets/noimage.png") },
-    { id: 14, name: "Caesar salad", calories: 600, protein: 30, image:require("../assets/noimage.png") },
-    { id: 15, name: "Tartiflette", calories: 675, protein: 27.5, image:require("../assets/noimage.png") },
-    { id: 16, name: "Sushi", calories: 500, protein: 27.5, image:require("../assets/noimage.png") },
-    { id: 17, name: "Salmon and avocado wrap", calories: 365, protein: 21, image:require("../assets/noimage.png") },
-    { id: 18, name: "Gnocchi with chicken and creamy parmesan sauce", calories: 500, protein: 35, image:require("../assets/noimage.png") }, 
-    { id: 19, name: "Roast duck breast with celery root mash", calories: 575, protein: 36.5, image:require("../assets/noimage.png") }
+    { id: 12, name: "1/2 Four-cheese pizza", calories: 475, protein: 18.5, image:require("../assets/Four-cheese-pizza.webp") },
+    { id: 13, name: "Lasagna bolognese", calories: 390, protein: 22, image:require("../assets/Lasagna-bolognese.jpg") },
+    { id: 14, name: "Caesar salad", calories: 600, protein: 30, image:require("../assets/Caesar-salad.webp") },
+    { id: 15, name: "Tartiflette", calories: 675, protein: 27.5, image:require("../assets/Tartiflette.webp") },
+    { id: 16, name: "Sushi", calories: 500, protein: 27.5, image:require("../assets/Sushi.jpeg") },
+    { id: 17, name: "Salmon and avocado wrap", calories: 365, protein: 21, image:require("../assets/Salmon-avocado-wrap.avif") },
+    { id: 18, name: "Gnocchi with chicken and creamy parmesan sauce", calories: 500, protein: 35, image:require("../assets/Gnocchi-chicken-parmesan.jpg") }, 
+    { id: 19, name: "Roast duck breast with celery root mash", calories: 575, protein: 36.5, image:require("../assets/Duck-celery.webp") }
   ],
   dinner: [
-    { id: 20, name: "Salmon + Quinoa", calories: 480, protein: 34, image:require("../assets/noimage.png") },
-    { id: 21, name: "Grilled veal with roasted potatoes", calories: 500, protein: 36, image:require("../assets/noimage.png") },
-    { id: 22, name: "Tofu Stir-Fry", calories: 420, protein: 20, image:require("../assets/noimage.png") },
-    { id: 23, name: "Creamy pumpkin and potato soup", calories: 150, protein: 2.5, image:require("../assets/noimage.png") },
-    { id: 24, name: "Quiche Lorraine", calories: 400, protein: 9, image:require("../assets/noimage.png") },
-    { id: 25, name: "Complete Salad", calories: 400, protein: 22, image:require("../assets/noimage.png") },
-    { id: 26, name: "Tuna cake", calories: 300, protein: 21, image:require("../assets/noimage.png") }, 
-    { id: 27, name: "Oven-roasted turkey roast + vegetable", calories: 325, protein: 32, image:require("../assets/noimage.png") },
-    { id: 28, name: "Eggplant & Lentil Curry", calories: 400, protein: 20, image:require("../assets/noimage.png") },
-    { id: 29, name: "Roast chicken with sweet potato mash", calories: 375, protein: 35, image:require("../assets/noimage.png")},
+    { id: 20, name: "Salmon + Quinoa", calories: 480, protein: 34, image:require("../assets/Salmon-Quinoa.jpeg") },
+    { id: 21, name: "Grilled veal with roasted potatoes", calories: 500, protein: 36, image:require("../assets/Veal-potatoes.webp") },
+    { id: 22, name: "Tofu Stir-Fry", calories: 420, protein: 20, image:require("../assets/Tofu-Stir-Fry.jpg") },
+    { id: 23, name: "Creamy pumpkin and potato soup", calories: 150, protein: 2.5, image:require("../assets/Pumpkin-potato-soup.jpg") },
+    { id: 24, name: "Quiche Lorraine", calories: 400, protein: 9, image:require("../assets/Quiche-Lorraine.jpg") },
+    { id: 25, name: "Complete Salad", calories: 400, protein: 22, image:require("../assets/Complete-Salad.jpeg") },
+    { id: 26, name: "Tuna cake", calories: 300, protein: 21, image:require("../assets/Tuna-cake.jpeg") }, 
+    { id: 27, name: "Oven-roasted turkey roast + vegetable", calories: 325, protein: 32, image:require("../assets/Turkey-vegetable.jpg") },
+    { id: 28, name: "Eggplant & Lentil Curry", calories: 400, protein: 20, image:require("../assets/Eggplant-Lentil-Curry.jpg") },
+    { id: 29, name: "Roast chicken with sweet potato mash", calories: 375, protein: 35, image:require("../assets/Chicken-sweet-potato-mash.webp")},
   ],
   snacks: [
-    { id: 30, name: "Greek Yogurt", calories: 150, protein: 10, image:require("../assets/noimage.png") },
-    { id: 31, name: "Protein Bar", calories: 180, protein: 20, image:require("../assets/noimage.png") },
-    { id: 32, name: "Apples + Almonds", calories: 200, protein: 6, image:require("../assets/noimage.png") },
-    { id: 33, name: "Brownie", calories: 400, protein: 5, image:require("../assets/noimage.png") },
-    { id: 34, name: "Hummus with vegetable sticks", calories: 165, protein: 4.5, image:require("../assets/noimage.png") },
-    { id: 35, name: "Carrot sticks with tzatziki", calories: 90, protein: 3, image:require("../assets/noimage.png") },
-    { id: 36, name: "Deviled eggs", calories: 200, protein: 13, image:require("../assets/noimage.png") },
-    { id: 37, name: "Protein muffin", calories: 150, protein: 10, image:require("../assets/noimage.png") },
-    { id: 38, name: "Sweet Popcorn", calories: 140, protein: 2, image:require("../assets/noimage.png") },
-    { id: 39, name: "Olives with feta cheese", calories: 150, protein: 5, image:require("../assets/noimage.png") }
+    { id: 30, name: "Greek Yogurt", calories: 150, protein: 10, image:require("../assets/Greek-Yogurt.jpeg") },
+    { id: 31, name: "Protein Bar", calories: 180, protein: 20, image:require("../assets/Protein-bar.png") },
+    { id: 32, name: "Apples + Almonds", calories: 200, protein: 6, image:require("../assets/Apples-Almonds.jpeg") },
+    { id: 33, name: "Brownie", calories: 400, protein: 5, image:require("../assets/Brownie.jpg") },
+    { id: 34, name: "Hummus with vegetable sticks", calories: 165, protein: 4.5, image:require("../assets/Hummus-vegetable-sticks.png") },
+    { id: 35, name: "Carrot sticks with tzatziki", calories: 90, protein: 3, image:require("../assets/Carrot-sticks-tzatziki.jpg") },
+    { id: 36, name: "Deviled eggs", calories: 200, protein: 13, image:require("../assets/Deviled-eggs.webp") },
+    { id: 37, name: "Protein muffin", calories: 150, protein: 10, image:require("../assets/Protein-muffin.jpg") },
+    { id: 38, name: "Sweet Popcorn", calories: 140, protein: 2, image:require("../assets/Sweet-Popcorn.jpeg") },
+    { id: 39, name: "Olives with feta cheese", calories: 150, protein: 5, image:require("../assets/Olive-feta.webp") }
   ],
 };
 
@@ -412,5 +412,6 @@ const styles = StyleSheet.create({
   },
 
 });
+
 
 
