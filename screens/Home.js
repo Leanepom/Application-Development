@@ -21,7 +21,7 @@ const MEALS = {
     { id: 13, name: "Lasagna bolognese", calories: 390, protein: 22, image:require("../assets/noimage.png") },
     { id: 14, name: "Caesar salad", calories: 600, protein: 30, image:require("../assets/noimage.png") },
     { id: 15, name: "Tartiflette", calories: 675, protein: 27.5, image:require("../assets/noimage.png") },
-    { id: 16, name: "Sushi + steamed rice + miso soup + Japanese salad", calories: 550, protein: 21, image:require("../assets/noimage.png") },
+    { id: 16, name: "Sushi", calories: 500, protein: 27.5, image:require("../assets/noimage.png") },
     { id: 17, name: "Salmon and avocado wrap", calories: 365, protein: 21, image:require("../assets/noimage.png") },
     { id: 18, name: "Gnocchi with chicken and creamy parmesan sauce", calories: 500, protein: 35, image:require("../assets/noimage.png") }, 
     { id: 19, name: "Roast duck breast with celery root mash", calories: 575, protein: 36.5, image:require("../assets/noimage.png") }
@@ -412,3 +412,4 @@ const styles = StyleSheet.create({
   },
 
 });
+
