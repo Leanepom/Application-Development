@@ -3,16 +3,16 @@ import { View, Text,Image, TouchableOpacity, StyleSheet, ScrollView, FlatList } 
 
 const MEALS = {
   breakfast: [
-    { id: 0, name: "Coffee", calories: 2, protein: 0, image:require("../assets/coffee.jpg") },
-    { id: 1, name: "Vegetable Omelette", calories: 250, protein: 18, image:require("../assets/Vegetable-omelette.jpg") },
-    { id: 2, name: "Oat–Banana Porridge", calories: 300, protein: 12, image:require("../assets/Oat-banana-porridge.webp") },
-    { id: 3, name: "Protein Smoothie", calories: 220, protein: 25, image:require("../assets/Protein-Smoothie.jpg") },
-    { id: 4, name: "Croissant", calories: 250, protein: 4.5, image:require("../assets/Croissant.jpg") },
-    { id: 5, name: "Natural yogurt", calories: 53, protein: 8.5, image:require("../assets/Natural-yogurt.webp") },
-    { id: 6, name: "Pancakes", calories: 245, protein: 7, image:require("../assets/Pancakes.jpg") },
-    { id: 7, name: "Bread with butter and jam", calories: 225, protein: 4.5, image:require("../assets/Bread-butter-jam.jpg")}, 
-    { id: 8, name: "Cereal", calories: 190, protein: 8, image:require("../assets/Cereal.png") },
-    { id: 9, name: "Hot chocolate", calories: 135, protein: 6.5, image:require("../assets/hot-chocolate.webp") }
+    { id: 0, name: "Vegetable Omelette", calories: 250, protein: 18, image:require("../assets/Vegetable-omelette.jpg") },
+    { id: 1, name: "Oat–Banana Porridge", calories: 300, protein: 12, image:require("../assets/Oat-banana-porridge.webp") },
+    { id: 2, name: "Protein Smoothie", calories: 220, protein: 25, image:require("../assets/Protein-Smoothie.jpg") },
+    { id: 3, name: "Croissant", calories: 250, protein: 4.5, image:require("../assets/Croissant.jpg") },
+    { id: 4, name: "Natural yogurt", calories: 53, protein: 8.5, image:require("../assets/Natural-yogurt.webp") },
+    { id: 5, name: "Pancakes", calories: 245, protein: 7, image:require("../assets/Pancakes.jpg") },
+    { id: 6, name: "Bread with butter and jam", calories: 225, protein: 4.5, image:require("../assets/Bread-butter-jam.jpg")}, 
+    { id: 7, name: "Cereal", calories: 190, protein: 8, image:require("../assets/Cereal.png") },
+    { id: 8, name: "Hot chocolate", calories: 135, protein: 6.5, image:require("../assets/hot-chocolate.webp") },
+    { id: 9, name: "Coffee", calories: 2, protein: 0, image:require("../assets/coffee.jpg") }
   ],
   lunch: [
     { id: 10, name: "Chicken + Rice + Vegetables", calories: 500, protein: 38, image:require("../assets/Chicken-Rice-Vegetables.jpg") },
@@ -412,6 +412,7 @@ const styles = StyleSheet.create({
   },
 
 });
+
 
 
 
