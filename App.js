@@ -1,11 +1,6 @@
 // App.js
 import React, { useState } from "react";
 import { View, ActivityIndicator, StyleSheet, StatusBar } from "react-native";
-
-/**
- * Si tu n'as pas encore ces fichiers, crée-les comme écrans basiques
- * (les exemples précédents fournis dans la conversation fonctionnent).
- */
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/Home";
