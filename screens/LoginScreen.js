@@ -40,6 +40,11 @@ export default function LoginScreen({ onLogin, navigateToRegister, setLoading })
       setLoading(false);
       try {
         const user = await loginUser(email, password);
+        if (!user.mealPreferences || user.mealPreferences.length === 0) {
+          user.mealPreferences = ["Breakfast", "Lunch", "Dinner", "Snacks"];
+          // Sauvegarde la mise à jour dans AsyncStorage
+          await AsyncStorage.setItem(user.email, JSON.stringify(user));
+      }
         onLogin(user);    // tu appelles ton callback pour ouvrir l'app
       } catch (err) {
         alert(err.message);
@@ -53,7 +58,7 @@ export default function LoginScreen({ onLogin, navigateToRegister, setLoading })
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <View style={styles.container}>
-      <Image source={require("../assets/bluebell.png")} style={{ width: 120, height: 120,alignContent:"center" }}/>
+      <Image source={require("../assets/bluebell.png")} style={{ width: 150, height: 150,alignSelf:"center" }}/>
         <Text style={styles.bigtitle}>Blueberry</Text>
         <Text style={styles.title}>Login</Text>
 
