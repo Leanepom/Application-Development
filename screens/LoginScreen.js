@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
+  Image,
   Text,
   TextInput,
   TouchableOpacity,
@@ -12,7 +13,7 @@ import {
 
 async function loginUser(inputEmail, inputPassword) {
   // Récupération du compte enregistré
-  const savedUserJSON = await AsyncStorage.getItem("user");
+  const savedUserJSON = await AsyncStorage.getItem(inputEmail);
 
   if (!savedUserJSON) {
     throw new Error("Aucun utilisateur enregistré.");
@@ -52,6 +53,7 @@ export default function LoginScreen({ onLogin, navigateToRegister, setLoading })
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <View style={styles.container}>
+      <Image source={require("../assets/bluebell.png")} style={{ width: 120, height: 120,alignContent:"center" }}/>
         <Text style={styles.bigtitle}>Blueberry</Text>
         <Text style={styles.title}>Login</Text>
 
