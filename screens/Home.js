@@ -61,7 +61,18 @@ export default function HomeScreen({ user, navigateToProfile}) {
     user.gender === "male"
       ? 10 * user.weight + 6.25 * user.height - 5 * user.age + 5
       : 10 * user.weight + 6.25 * user.height - 5 * user.age - 161;
-  const caloriesMax = Math.round(bmr * 1.55);
+
+  const activityFactors = {
+    sedentary: 1.2,     // Peu ou pas d'exercice
+    light: 1.375,       // Léger 1-3 jours/semaine
+    medium: 1.55,       // Modéré 3-5 jours/semaine
+    active: 1.725,      // Actif 6-7 jours/semaine
+    veryActive: 1.9     // Très actif (travail physique + exercice)
+  };
+      
+  const activityFactor = activityFactors[user.activityLevel] || 1.55;
+
+  const caloriesMax = Math.round(bmr * activityFactor);
 
   // Objectif protéines (1.6 g/kg)
   const proteinGoal = Math.round(user.weight * 1.6);
