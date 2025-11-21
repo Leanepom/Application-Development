@@ -123,6 +123,38 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
             value={form.weight}
             onChangeText={(v) => handleChange("weight", v)}
           />
+          <Text style={styles.label}>Activity Level</Text>
+          <View style={styles.activityGroup}>
+            {[
+              { value: "sedentary", label: "Sedentary", description: "Little to no exercise" },
+              { value: "light", label: "Light", description: "Light exercise 1-3 days/week" },
+              { value: "medium", label: "Medium", description: "Moderate exercise 3-5 days/week" },
+              { value: "active", label: "Active", description: "Hard exercise 6-7 days/week" },
+              { value: "veryActive", label: "Very Active", description: "Physical job + daily exercise" }
+            ].map((activity) => (
+              <TouchableOpacity
+                key={activity.value}
+                style={[
+                  styles.activityButton,
+                  form.activityLevel === activity.value && styles.activityButtonSelected,
+                ]}
+                onPress={() => handleChange("activityLevel", activity.value)}
+              >
+                <Text style={[
+                  styles.activityLabel,
+                  form.activityLevel === activity.value && styles.activityLabelSelected
+                ]}>
+                  {activity.label}
+                </Text>
+                <Text style={[
+                  styles.activityDescription,
+                  form.activityLevel === activity.value && styles.activityDescriptionSelected
+                ]}>
+                  {activity.description}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
 
           <Text style={styles.label}>Email</Text>
           <TextInput
@@ -244,4 +276,47 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textTransform: "uppercase",
   },
+  activityGroup: {
+  marginTop: 10,
+  marginBottom: 20,
+},
+
+activityButton: {
+  backgroundColor: "#f0f0f0",
+  borderRadius: 10,
+  paddingVertical: 12,
+  paddingHorizontal: 14,
+  marginBottom: 10,
+  borderWidth: 1,
+  borderColor: "#e5e5e5",
+},
+
+activityButtonSelected: {
+  backgroundColor: "#131F71",
+  borderColor: "#131F71",
+},
+
+activityLabel: {
+  fontSize: 13,
+  fontWeight: "700",
+  color: "#333",
+  textTransform: "uppercase",
+  letterSpacing: 0.5,
+},
+
+activityLabelSelected: {
+  color: "#fff",
+},
+
+activityDescription: {
+  fontSize: 12.5,
+  color: "#666",
+  marginTop: 4,
+  lineHeight: 16,
+},
+
+activityDescriptionSelected: {
+  color: "#e8e8e8",
+
+},
 });
