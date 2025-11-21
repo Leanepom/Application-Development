@@ -24,6 +24,7 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
     weight: "",
     gender: "",
     activityLevel: "medium",
+    mealPreferences: ["Breakfast", "Lunch", "Dinner", "Snacks"]
   });
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
@@ -320,3 +321,4 @@ activityDescriptionSelected: {
 
 },
 });
+
