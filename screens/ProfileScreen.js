@@ -66,6 +66,39 @@ export default function ProfileScreen({ user, updateUser, goBack, onLogout }) {
               </TouchableOpacity>
             ))}
         </View>
+        <Text style={styles.sectionTitle}>Activity Level</Text>
+      <View style={styles.activityGroup}>
+        {[
+          { value: "sedentary", label: "Sedentary", description: "Little to no exercise" },
+          { value: "light", label: "Light", description: "Light exercise 1-3 days/week" },
+          { value: "medium", label: "Medium", description: "Moderate exercise 3-5 days/week" },
+          { value: "active", label: "Active", description: "Hard exercise 6-7 days/week" },
+          { value: "veryActive", label: "Very Active", description: "Physical job + daily exercise" }
+        ].map((activity) => (
+          <TouchableOpacity
+            key={activity.value}
+            style={[
+              styles.activityButton,
+              form.activityLevel === activity.value && styles.activityButtonSelected,
+            ]}
+            onPress={() => handleChange("activityLevel", activity.value)}
+          >
+            <Text style={[
+              styles.activityLabel,
+              form.activityLevel === activity.value && styles.activityLabelSelected
+            ]}>
+              {activity.label}
+            </Text>
+            <Text style={[
+              styles.activityDescription,
+              form.activityLevel === activity.value && styles.activityDescriptionSelected
+            ]}>
+              {activity.description}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
       <Text style={styles.sectionTitle}>Chose your meal plans</Text>
 
       <View style={styles.checkboxContainer}>
@@ -184,4 +217,41 @@ const styles = StyleSheet.create({
   genderText: { color: "#555" },
 
   genderTextSelected: { color: "#fff", fontWeight: "600" },
+  activityGroup: {
+  marginBottom: 20,
+},
+
+activityButton: {
+  backgroundColor: "#f8f8f8",
+  padding: 12,
+  borderRadius: 8,
+  marginBottom: 8,
+  borderWidth: 1,
+  borderColor: "#e0e0e0",
+},
+
+activityButtonSelected: {
+  backgroundColor: "#131F71",
+  borderColor: "#131F71",
+},
+
+activityLabel: {
+  fontSize: 16,
+  fontWeight: "600",
+  color: "#333",
+},
+
+activityLabelSelected: {
+  color: "#fff",
+},
+
+activityDescription: {
+  fontSize: 12,
+  color: "#666",
+  marginTop: 2,
+},
+
+activityDescriptionSelected: {
+  color: "#e0e0e0",
+},
 });
