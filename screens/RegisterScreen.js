@@ -34,7 +34,7 @@ export default function RegisterScreen({ onRegister, navigateToLogin, setLoading
   setTimeout(async () => {
     try {
       // enregistre les infos dans ton fichier texte
-      await AsyncStorage.setItem("user", JSON.stringify(form));
+      await AsyncStorage.setItem(form.email, JSON.stringify(form));
 
       onRegister(form);     // callback de ton app
       setLoading(false);
