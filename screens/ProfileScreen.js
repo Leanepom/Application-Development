@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 
 export default function ProfileScreen({ user, updateUser, goBack, onLogout }) {
@@ -14,8 +15,10 @@ export default function ProfileScreen({ user, updateUser, goBack, onLogout }) {
     setForm({ ...form, mealPreferences: updated });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     updateUser(form);
+    // enregistre les infos dans ton fichier texte
+    await AsyncStorage.setItem(form.email, JSON.stringify(form));
   };
 
   return (
