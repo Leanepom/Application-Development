@@ -5,6 +5,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/Home";
 import ProfileScreen from "./screens/ProfileScreen";
+import RecipeScreen from "./screens/RecipeScreen";
 
 export default function App() {
   // 'login' | 'register' | 'home' | 'profile'
@@ -12,7 +13,8 @@ export default function App() {
   // user peut être un object { uid, email, firstName, ... } ou null
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  
   const navigate = (target) => {
     setScreen(target);
   };
@@ -28,6 +30,13 @@ export default function App() {
     setUser(null);
     setScreen("login");
   };
+
+  const goToRecipe = (meal) => {
+    setSelectedRecipe(meal);
+    setScreen("recipe");
+  };
+  
+
 
   // Affiche un loader si besoin
   if (loading) {
@@ -74,6 +83,7 @@ export default function App() {
             onLogout={onLogout}
             // si besoin, expose une fonction pour mettre à jour user depuis ProfileScreen
             updateUser={(newUser) => setUser((u) => ({ ...u, ...newUser }))}
+            navigateToRecipe={goToRecipe}
           />
         </View>
       );
@@ -93,6 +103,18 @@ export default function App() {
           />
         </View>
       );
+
+      case "recipe":
+        return (
+          <View style={styles.container}>
+            <StatusBar barStyle="dark-content" />
+            <RecipeScreen
+              meal={selectedRecipe}
+              goBack={() => navigate("home")} // ← le bouton retour utilisera ça
+            />
+          </View>
+        );
+
 
     default:
       return (
