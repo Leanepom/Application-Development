@@ -52,7 +52,7 @@ const MEALS = {
   ],
 };
 
-export default function HomeScreen({ user, navigateToProfile}) {
+export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }) {
   const [selectedMeals, setSelectedMeals] = useState([]);
 
   // Calculs
@@ -113,6 +113,14 @@ export default function HomeScreen({ user, navigateToProfile}) {
               <Text style={styles.mealName}>{item.name}</Text>
               <Text style={styles.mealCalories}>{item.calories} kcal</Text>
               <Text style={styles.mealProtein}>{item.protein} g protéines</Text>
+
+              <TouchableOpacity
+                style={styles.recipeButton}
+                onPress={() => navigateToRecipe(item)}
+              >
+                <Text style={styles.recipeButtonText}>Recipe</Text>
+              </TouchableOpacity>
+
             </TouchableOpacity>
           );
         }}
@@ -422,12 +430,19 @@ const styles = StyleSheet.create({
     textAlign: "right",
   },
 
+  recipeButton: {
+    marginTop: 8,
+    backgroundColor: "#131F71",
+    paddingVertical: 6,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+
+  recipeButtonText: {
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: 14,
+  },
+
+
 });
-
-
-
-
-
-
-
-
