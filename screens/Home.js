@@ -326,6 +326,13 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
       {user.mealPreferences?.includes("Snacks") &&
         renderCarousel("🍪 Snacks", MEALS.snacks)}
 
+        <TouchableOpacity
+          style={styles.clearButton}
+          onPress={() => setSelectedMeals([])}
+        >
+          <Text style={styles.clearButtonText}>Remove everything</Text>
+        </TouchableOpacity>
+
     </ScrollView>
   );
 }
@@ -451,5 +458,19 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 14,
   },
+
+  clearButton: {
+    backgroundColor: "#FF3B30",
+    padding: 12,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 24,
+  },
+  
+  clearButtonText: { 
+    color: "#fff", 
+    fontWeight: "600" 
+  },
+
 });
 
