@@ -712,5 +712,512 @@ Plate the tofu stir-fry and garnish with sesame seeds or green onions if desired
 Serve immediately with rice or noodles.
 `,
 
+"Creamy pumpkin and potato soup": `
+Ingredients (1 serving):
+  150 g (5.3 oz) pumpkin, peeled and diced
+  100 g (3.5 oz) potato, peeled and diced
+  ½ small onion, chopped
+  1 teaspoon olive oil or butter
+  250 ml (1 cup) vegetable or chicken broth
+  50 ml (3 tablespoons) cream or milk
+  Salt and pepper to taste
+  Optional: nutmeg, parsley, or croutons for garnish
 
+Instructions:
+
+Prepare the vegetables
+Heat olive oil or butter in a small pot over medium heat.
+Add onion and sauté for 2–3 minutes until soft.
+Add pumpkin and potato, stir to coat with oil.
+
+Cook the soup
+Add broth, bring to a boil, then reduce heat and simmer for 15–20 minutes until vegetables are tender.
+
+Blend the soup
+Use an immersion blender or transfer to a blender and puree until smooth.
+Return to the pot if needed.
+
+Add cream and season
+Stir in cream or milk.
+Season with salt, pepper, and optional nutmeg to taste.
+
+Serve
+Pour soup into a bowl.
+Garnish with parsley or croutons if desired and serve warm.
+`,
+
+"Quiche Lorraine": `
+Ingredients (1 serving, 1 mini quiche or 1 slice equivalent):
+  1 small piece of pie crust (about 1/6 of a standard crust)
+  50 g (1.75 oz) bacon lardons
+  1 small egg
+  40 ml (2–3 tablespoons) cream or milk
+  20 g (2 tablespoons) grated cheese (optional; traditional recipe uses none)
+  Salt and pepper to taste
+  Optional: a pinch of nutmeg
+
+Instructions:
+
+Prepare the crust
+If using raw pie crust, place it in a small tart mold.
+Prick the bottom with a fork.
+Pre-bake for 5 minutes at 180°C (350°F) if you want a crispier crust.
+
+Cook the bacon
+In a small pan, cook the bacon lardons for 3–4 minutes until lightly browned.
+Drain excess fat.
+
+Prepare the filling
+In a small bowl, whisk the egg with cream (or milk).
+Season with salt, pepper, and optional nutmeg.
+Add grated cheese if using.
+
+Assemble
+Spread the cooked bacon over the pie crust.
+Pour the egg mixture on top.
+
+Bake
+Bake at 180°C (350°F) for 20–25 minutes until the filling is set and lightly golden.
+
+Serve
+Let it cool for a few minutes before eating.
+Serve warm.
+`,
+
+"Complete Salad": `
+Ingredients (1 serving):
+  2 cups mixed salad greens (lettuce, spinach, arugula)
+  1 small tomato, diced
+  ¼ cucumber, sliced
+  ½ carrot, grated
+  50 g (2 oz) cooked chicken, tuna, or tofu (choose one)
+  1 boiled egg, sliced
+  2 tablespoons corn (optional)
+  1 tablespoon nuts or seeds (walnuts, sunflower seeds, etc.)
+  1 tablespoon olive oil
+  1 teaspoon vinegar or lemon juice
+  Salt and pepper to taste
+
+Instructions:
+
+Prepare the vegetables
+Wash the salad greens and pat dry.
+Cut the tomato, cucumber, and grate the carrot.
+
+Add protein
+Slice the cooked chicken, tuna, or tofu and place on top of the salad.
+Add the sliced boiled egg.
+
+Add extras
+Sprinkle corn and nuts or seeds over the salad.
+
+Dress the salad
+Drizzle olive oil and vinegar (or lemon juice).
+Season with salt and pepper.
+
+Serve
+Toss gently if desired and serve immediately.
+`,
+
+"Tuna cake": `
+Ingredients (1 serving, 1–2 small tuna cakes):
+  1 small can of tuna (80 g / 3 oz), drained
+  1 small egg
+  1 tablespoon breadcrumbs (or crushed crackers)
+  1 tablespoon grated cheese (optional)
+  1 teaspoon chopped onion (optional)
+  1 teaspoon chopped parsley (optional)
+  Salt and pepper to taste
+  1 teaspoon oil for cooking
+
+Instructions:
+
+Prepare the mixture
+In a small bowl, combine drained tuna, egg, breadcrumbs, and optional cheese or herbs.
+Season with salt and pepper.
+Mix until the mixture holds together.
+
+Shape the cakes
+Form 1–2 small patties with your hands.
+
+Cook
+Heat oil in a small pan over medium heat.
+Cook the tuna cakes for 3–4 minutes per side until golden brown.
+
+Serve
+Serve warm with salad, rice, or vegetables.
+`,
+
+"Oven-roasted turkey roast + vegetable": `
+Ingredients (1 serving):
+  150–180 g (5–6 oz) turkey roast (or turkey breast)
+  1 teaspoon olive oil
+  Salt and pepper to taste
+  ½ teaspoon herbs (rosemary, thyme, or mixed herbs)
+  1 small carrot, sliced
+  ½ potato, diced
+  ¼ onion, sliced
+  A handful of zucchini or bell pepper (optional)
+
+Instructions:
+
+Prepare the turkey
+Preheat oven to 200°C (390°F).
+Rub turkey with olive oil, salt, pepper, and herbs.
+
+Prepare the vegetables
+Place carrot, potato, onion, and optional vegetables on a small baking dish.
+Drizzle with a little olive oil, salt, and pepper.
+Mix to coat evenly.
+
+Roast
+Place the turkey on top or next to the vegetables.
+Bake for 25–35 minutes depending on thickness, until turkey is fully cooked (internal temperature 75°C / 165°F) and vegetables are tender.
+Turn vegetables halfway through if needed.
+
+Serve
+Slice the turkey and serve with roasted vegetables.
+`,
+
+"Eggplant & Lentil Curry": `
+Ingredients (1 serving):
+  1 small eggplant, diced
+  ½ cup (100 g) cooked lentils (or ¼ cup dry lentils)
+  1 small tomato, diced
+  ¼ onion, chopped
+  1 small garlic clove, minced
+  1 teaspoon curry powder
+  ½ teaspoon turmeric (optional)
+  ½ teaspoon cumin (optional)
+  1 teaspoon vegetable oil
+  150 ml (⅔ cup) coconut milk or broth
+  Salt and pepper to taste
+  Optional: fresh cilantro for garnish
+
+Instructions:
+
+Prepare the lentils
+If using dry lentils:
+  Rinse them and cook in boiling water for 15–20 minutes until tender.
+Drain and set aside.
+
+Cook the eggplant
+Heat oil in a pan over medium heat.
+Add diced eggplant and cook for 5–7 minutes until soft and lightly browned.
+
+Add aromatics
+Add onion and garlic.
+Sauté for 2 minutes until fragrant.
+
+Add spices
+Sprinkle curry powder, turmeric, and cumin.
+Stir for 30 seconds to release flavors.
+
+Add tomato and liquid
+Add diced tomato and lentils.
+Pour in coconut milk (or broth).
+Season with salt and pepper.
+
+Simmer
+Reduce heat and simmer for 10 minutes until the curry thickens and the flavors combine.
+
+Serve
+Serve warm, topped with fresh cilantro if desired.
+Optional: Pair with rice or naan.
+`,
+
+"Roast chicken with sweet potato mash": `
+Ingredients (1 serving):
+  1 chicken thigh or 1 small chicken breast
+  1 teaspoon olive oil
+  Salt and pepper to taste
+  ½ teaspoon herbs (thyme, rosemary, or mixed herbs)
+  1 small sweet potato (150–200 g), peeled and diced
+  1 teaspoon butter or a splash of milk (for the mash)
+  Optional: garlic powder, paprika, or lemon juice
+
+Instructions:
+
+Roast the chicken
+Preheat oven to 200°C (390°F).
+Rub the chicken with olive oil, salt, pepper, and herbs.
+Place on a baking tray and roast for 20–30 minutes depending on size,
+until fully cooked (internal temperature 75°C / 165°F).
+
+Prepare the sweet potato mash
+Boil the diced sweet potato in salted water for 10–12 minutes until soft.
+Drain.
+Mash with butter or milk until smooth.
+Season with salt and pepper.
+
+Serve
+Plate the sweet potato mash and top or serve beside the roasted chicken.
+Optional: add a drizzle of lemon juice or sprinkle of paprika.
+`,
+
+"Greek Yogurt": `
+Ingredients (1 serving):
+  250 ml (1 cup) whole milk
+  2 tablespoons plain yogurt with live cultures
+  Optional: honey, fruits, or nuts for serving
+
+Instructions:
+
+Heat the milk
+Warm the milk in a small pot until it reaches about 40–45°C (lukewarm).
+Do not boil.
+
+Mix in the yogurt
+Place the plain yogurt in a small bowl.
+Add a few tablespoons of warm milk and mix until smooth.
+Pour this mixture back into the pot and stir gently.
+
+Incubate
+Pour the mixture into a clean container.
+Cover and keep in a warm place (around 40°C) for 6–8 hours until thick.
+
+Strain to make it "Greek"
+Place a fine sieve or cheesecloth over a bowl.
+Pour the yogurt into it and let it strain for 1–2 hours to remove extra whey.
+The longer it strains, the thicker it becomes.
+
+Chill and serve
+Transfer to a container and refrigerate at least 1 hour.
+Serve plain or with honey, fruits, or nuts.
+`,
+
+"Protein Bar": `
+Ingredients (1 serving, 1 bar):
+  ½ cup (50 g) rolled oats
+  2 tablespoons protein powder (vanilla, chocolate, or your choice)
+  2 tablespoons nut butter (peanut, almond, or cashew)
+  1–2 teaspoons honey or maple syrup
+  1 tablespoon chopped nuts or seeds (optional)
+  1–2 tablespoons milk (or water) as needed
+
+Instructions:
+
+Prepare the mixture
+In a bowl, combine oats, protein powder, and optional nuts or seeds.
+Add nut butter and honey.
+Mix well until it forms a thick, sticky dough.
+If too dry, add 1–2 tablespoons milk to help bind.
+
+Shape the bar
+Press the mixture firmly into a small rectangular mold or shape with hands.
+
+Chill
+Place in the fridge for at least 30 minutes to firm up.
+
+Serve
+Remove from the mold and enjoy as a single protein bar.
+Store in the fridge if not consuming immediately.
+`,
+
+"Apples + Almonds": `
+Ingredients (1 serving):
+  1 medium apple, sliced
+  10–12 almonds (raw or roasted)
+  Optional: a sprinkle of cinnamon or a drizzle of honey
+
+Instructions:
+
+Prepare the apple
+Wash and core the apple.
+Slice into thin wedges.
+
+Combine
+Place apple slices in a bowl or plate.
+Add almonds on top or alongside.
+
+Optional flavor
+Sprinkle with cinnamon or drizzle a little honey if desired.
+
+Serve
+Enjoy immediately as a healthy snack.
+`,
+
+"Brownie": `
+Ingredients (1 serving, small brownie):
+  2 tablespoons (30 g) unsalted butter
+  2 tablespoons (15 g) sugar
+  1 small egg (or half a large egg)
+  1 tablespoon cocoa powder
+  2 tablespoons all-purpose flour
+  A pinch of salt
+  Optional: 1–2 tablespoons chocolate chips or nuts
+
+Instructions:
+
+Prepare the batter
+Preheat oven to 180°C (350°F) or prepare a microwave-safe mug for microwave method.
+Melt butter in a small bowl.
+Add sugar and egg, and whisk until combined.
+Stir in cocoa powder, flour, and a pinch of salt.
+Fold in chocolate chips or nuts if using.
+
+Bake
+For oven: Pour batter into a small greased ramekin or baking dish.
+Bake for 12–15 minutes until a toothpick comes out mostly clean.
+For microwave: Pour batter into a greased microwave-safe mug.
+Microwave on high for 1–2 minutes, checking for doneness.
+
+Serve
+Let cool slightly before eating.
+Enjoy warm or at room temperature.
+`,
+
+"Hummus with vegetable sticks": `
+Ingredients (1 serving):
+  ½ cup (120 g) canned chickpeas, drained and rinsed
+  1 teaspoon tahini (sesame paste)
+  1 small garlic clove
+  1 teaspoon olive oil
+  1 teaspoon lemon juice
+  Salt to taste
+  1–2 tablespoons water (to adjust consistency)
+  1 cup assorted vegetable sticks (carrot, cucumber, bell pepper, celery)
+
+Instructions:
+
+Prepare the hummus
+In a blender or food processor, combine chickpeas, tahini, garlic, olive oil, lemon juice, and salt.
+Blend until smooth.
+Add water gradually to reach desired consistency.
+
+Prepare the vegetables
+Wash and peel (if needed) the vegetables.
+Cut into sticks about 5–7 cm long.
+
+Serve
+Place hummus in a small bowl.
+Arrange vegetable sticks around the hummus.
+Serve immediately as a healthy snack or appetizer.
+`,
+
+"Carrot sticks with tzatziki": `
+Ingredients (1 serving):
+  2–3 medium carrots
+  3 tablespoons Greek yogurt
+  ½ small cucumber, grated
+  1 small garlic clove, minced
+  1 teaspoon olive oil
+  ½ teaspoon lemon juice
+  Salt and pepper to taste
+  Optional: fresh dill or mint for garnish
+
+Instructions:
+
+Prepare the carrots
+Wash, peel, and cut the carrots into sticks about 5–7 cm long.
+
+Prepare the tzatziki
+Squeeze excess water from the grated cucumber.
+In a small bowl, combine Greek yogurt, cucumber, garlic, olive oil, lemon juice, salt, and pepper.
+Mix well and garnish with dill or mint if desired.
+
+Serve
+Place the tzatziki in a small bowl and arrange carrot sticks around it.
+Serve immediately as a healthy snack or appetizer.
+`,
+
+"Deviled eggs": `
+Ingredients (1 serving, 2 eggs):
+  2 large eggs
+  1 teaspoon mayonnaise
+  ½ teaspoon mustard
+  Salt and pepper to taste
+  Optional: paprika or chives for garnish
+
+Instructions:
+
+Boil the eggs
+Place eggs in a small pot and cover with water.
+Bring to a boil, then reduce heat and simmer for 10 minutes.
+Drain and cool in cold water.
+
+Prepare the filling
+Peel the eggs and cut them in half lengthwise.
+Remove the yolks and place them in a small bowl.
+Mash the yolks with mayonnaise, mustard, salt, and pepper until smooth.
+
+Fill the eggs
+Spoon or pipe the yolk mixture back into the egg whites.
+
+Serve
+Sprinkle with paprika or chopped chives if desired.
+Serve immediately or refrigerate until ready to eat.
+`,
+
+"Protein muffin": `
+Ingredients (1 serving, 1 muffin):
+  3 tablespoons (30 g) all-purpose flour or oat flour
+  1 tablespoon protein powder (vanilla or chocolate)
+  1 tablespoon sugar or sweetener (optional)
+  ½ teaspoon baking powder
+  1 tablespoon milk (dairy or plant-based)
+  1 small egg (or half a large egg)
+  1 teaspoon oil or melted butter
+  Optional: 1 tablespoon berries, chocolate chips, or nuts
+
+Instructions:
+
+Prepare the batter
+Preheat oven to 180°C (350°F) and grease a small muffin tin or ramekin.
+In a small bowl, mix flour, protein powder, sugar, and baking powder.
+Add milk, egg, and oil, and stir until smooth.
+Fold in optional berries, chocolate chips, or nuts.
+
+Bake
+Pour batter into the prepared muffin tin.
+Bake for 15–20 minutes, or until a toothpick comes out clean.
+
+Serve
+Let the muffin cool slightly before eating.
+Enjoy warm or at room temperature.
+`,
+
+"Sweet Popcorn": `
+Ingredients (1 serving):
+  ¼ cup (50 g) popcorn kernels or 1 small bag of plain popcorn
+  1 teaspoon sugar or honey
+  ½ teaspoon butter or oil
+  Optional: a pinch of cinnamon or cocoa powder
+
+Instructions:
+
+Pop the popcorn
+If using kernels, heat a small pot with butter or oil over medium heat.
+Add kernels, cover, and shake occasionally until popping slows down.
+Remove from heat and transfer to a bowl.
+
+Sweeten
+While still warm, sprinkle sugar or drizzle honey over the popcorn.
+Toss to coat evenly.
+Add optional cinnamon or cocoa powder if desired.
+
+Serve
+Enjoy immediately as a sweet snack.
+`,
+
+"Olives with feta cheese": `
+Ingredients (1 serving):
+  10–12 olives (green or black)
+  50 g (1.75 oz) feta cheese, cubed
+  1 teaspoon olive oil
+  Optional: a pinch of dried oregano or fresh herbs (parsley, thyme)
+
+Instructions:
+
+Prepare the ingredients
+Rinse olives if needed and drain.
+Cut feta cheese into small cubes.
+
+Combine
+Place olives and feta in a small bowl.
+Drizzle with olive oil and sprinkle herbs if desired.
+
+Serve
+Serve immediately as a snack, appetizer, or part of a mezze platter.
+`
 };
