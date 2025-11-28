@@ -1,3 +1,131 @@
+Léane
+leane6125
+En ligne
+
+Léane — 07/11/2025 10:56
+https://github.com/Leanepom/Application-Development.git
+Léane — 25/11/2025 16:29
+import numpy as np
+import scipy.io
+from dataclasses import dataclass
+from typing import Tuple
+
+@dataclass
+class KalmanState:
+    x: np.ndarray
+    P: np.ndarray
+    F: np.ndarray
+    R: np.ndarray
+    z: np.ndarray
+
+def kalman_filter(s: KalmanState) -> Tuple[KalmanState, np.ndarray]:
+    # Prediction
+    s.x = s.F @ s.x
+    s.P = s.F @ s.P @ s.F.T
+
+    # Update
+    K = s.P @ np.linalg.inv(s.P + s.R)
+    s.x = s.x + K @ (s.z - s.x)
+    s.P = s.P - K @ s.P
+    return s, K
+
+
+o = np.loadtxt('missile_data.csv', delimiter=',', skiprows=1).T  # Transpose to match .mat format (2, 100)
+print("Loaded data from missile_data.csv")
+
+def missile(o, sigma):
+    """
+    Track missile with Kalman filter and output current state.
+    """
+    # Initialize state
+    # State transition matrix (x, y, vx)
+    F = np.array([
+        [1, 0, 1],  
+        [0, 1, 0],  
+        [0, 0, 1] 
+    ])
+    
+    # Measurement noise covariance
+    R = np.array([
+        [sigma**2, 0, 0],
+        [0, sigma**2, 0],
+        [0, 0, 2*sigma**2],
+    ])
+    
+    s = KalmanState(
+        x=np.array([o[0, 0], o[1, 0], 0]),  # Initial state estimate: [x, y, vx=0]
+        P=R.copy(),  # Initial state covariance = measurement noise
+        F=F,
+        R=R,
+        z=np.array([o[0, 0], o[1, 0], 0])   # Initial observation: [x, y, vx=0]
+    )
+
+    for t in range(1, o.shape[1]):
+        # Update with Kalman filter
+        s.z = np.array([o[0, t], o[1, t], o[0, t] - o[0, t-1]])
+        s,K=kalman_filter(s)
+
+    state = s.x
+    return state
+
+def main():
+    """Main function to demonstrate missile tracking with Kalman filter."""
+    sigma = 0.5
+    final_state = missile(o, sigma)
+    print(f"Final state: {final_state}")
+    print(f"X position: {final_state[0]:.2f}, Y position: {final_state[1]:.2f}, X velocity: {final_state[2]:.3f}")
+
+if __name__ == '__main__':
+    main()
+vivalo — 26/11/2025 17:23
+merci bcp
+vivalo — Hier à 10:16
+Transféré
+import numpy as np
+import scipy.io
+from dataclasses import dataclass
+from typing import Tuple
+
+@dataclass
+Afficher plus
+message.txt
+3 Ko
+Léane — 10:58
+export default function HomeScreen({ user, navigateToProfile, navigateToRecipe })
+<TouchableOpacity
+                style={styles.recipeButton}
+                onPress={() => navigateToRecipe(item)}
+              >
+                <Text style={styles.recipeButtonText}>Recipe</Text>
+              </TouchableOpacity>
+recipeButton: {
+    marginTop: 8,
+    backgroundColor: "#131F71",
+    paddingVertical: 6,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+
+  recipeButtonText: {
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: 14,
+  },
+vivalo — 11:01
+import React, { useState } from "react";
+import { View, Text,Image, TouchableOpacity, StyleSheet, ScrollView, FlatList } from "react-native";
+
+const MEALS = {
+  breakfast: [
+    { id: 0, name: "Vegetable Omelette", calories: 250, protein: 18, image:require("../assets/Vegetable-omelette.jpg") },
+Afficher plus
+message.txt
+19 Ko
+﻿
+vivalo
+vivalo.
+ 
+ 
 import React, { useState } from "react";
 import { View, Text,Image, TouchableOpacity, StyleSheet, ScrollView, FlatList } from "react-native";
 
@@ -63,11 +191,11 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
       : 10 * user.weight + 6.25 * user.height - 5 * user.age - 161;
 
   const activityFactors = {
-    sedentary: 1.2,     // Peu ou pas d'exercice
-    light: 1.375,       // Léger 1-3 jours/semaine
-    medium: 1.55,       // Modéré 3-5 jours/semaine
-    active: 1.725,      // Actif 6-7 jours/semaine
-    veryActive: 1.9     // Très actif (travail physique + exercice)
+    sedentary: 1.2,
+    light: 1.375,
+    medium: 1.55,
+    active: 1.725,
+    veryActive: 1.9
   };
       
   const activityFactor = activityFactors[user.activityLevel] || 1.55;
@@ -81,9 +209,20 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
   const caloriesConsumed = selectedMeals.reduce((s, m) => s + m.calories, 0);
   const proteinConsumed = selectedMeals.reduce((s, m) => s + m.protein, 0);
 
-  const caloriesLeft = Math.max(0, caloriesMax - caloriesConsumed);
+  // AUTO GOAL (lose / maintain / gain)
+  let autoGoal = "maintain";
+  if (bmi < 18.5) autoGoal = "gain";
+  else if (bmi >= 25) autoGoal = "lose";
 
+  // RÉALISTIQUE : déficit & surplus (%)
+  let deficitOrSurplus = 0;
+  if (autoGoal === "lose") {
+    deficitOrSurplus = Math.round(caloriesMax * -0.20);
+  } else if (autoGoal === "gain") {
+    deficitOrSurplus = Math.round(caloriesMax * +0.12);
+  }
 
+  const finalCaloriesMax = caloriesMax + deficitOrSurplus;
 
   const toggleMeal = (meal) => {
     if (selectedMeals.find((m) => m.id === meal.id)) {
@@ -118,7 +257,7 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
                 style={styles.recipeButton}
                 onPress={() => navigateToRecipe(item)}
               >
-                <Text style={styles.recipeButtonText}>Recipe</Text>
+              <Text style={styles.recipeButtonText}>Recipe</Text>
               </TouchableOpacity>
 
             </TouchableOpacity>
@@ -131,14 +270,15 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
   // Couleur selon statut
   const statusColor =
     bmi < 18.5 ? "#00BFFF" : bmi < 25 ? "#34C759" : bmi < 30 ? "#FF9500" : "#FF3B30";
-// Logique barres calories
-  const calRatio = caloriesMax > 0 ? caloriesConsumed / caloriesMax : 0;
+
+  // Logique barres calories
+  const calRatio = finalCaloriesMax > 0 ? caloriesConsumed / finalCaloriesMax : 0;
   const calRemaining = Math.max(0, 1 - calRatio);
   const calSurplusRatio =
-    caloriesConsumed > caloriesMax ? (caloriesConsumed - caloriesMax) / caloriesMax : 0;
+    caloriesConsumed > finalCaloriesMax ? (caloriesConsumed - finalCaloriesMax) / finalCaloriesMax : 0;
 
   let calColor = "#34C759";
-  if (caloriesConsumed >= caloriesMax) calColor = "#FF3B30";
+  if (caloriesConsumed >= finalCaloriesMax) calColor = "#FF3B30";
   else if (calRemaining <= 0.2) calColor = "#FF9500";
 
   // Logique barre protéines
@@ -164,72 +304,76 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
       <View style={[styles.infoCard, { borderColor: statusColor }]}>
         <Text style={styles.infoLabel}>BMI : <Text style={{ color: statusColor }}>{bmi}</Text></Text>
         <Text style={styles.infoLabel}>BMR : <Text style={{ color: "#007AFF" }}>{bmr.toFixed(0)} kcal</Text></Text>
+
         {/* BARRE BMI */}
-  <View style={styles.scaleContainer}>
-  <Text style={styles.scaleLabel}>BMI Status</Text>
+        <View style={styles.scaleContainer}>
+          <Text style={styles.scaleLabel}>BMI Status</Text>
 
-  {/* Barre colorée */}
-  <View style={styles.scaleBar}>
-    <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 18.5 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 6.5 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 5 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 10 }]} />
+          <View style={styles.scaleBar}>
+            <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 18.5 }]} />
+            <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 6.5 }]} />
+            <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 5 }]} />
+            <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 10 }]} />
 
-    {/* CURSEUR */}
-    <View
-      style={[
-        styles.indicator,
-        { left: `calc(${(bmi / 40) * 100}% - 1px)` }
-      ]}
-    />
-    </View>
+            <View
+              style={[
+                styles.indicator,
+                { left: `calc(${(bmi / 40) * 100}% - 1px)` }
+              ]}
+            />
+          </View>
 
-    {/* ÉTIQUETTES en dessous */}
-    <View style={styles.scaleLabelsRow}>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: "0%", transform: [{ translateX: -5 }] }]}>0</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: `${(18.5 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>18.5</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: `${(25 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>25</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: `${(30 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>30</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: "100%", transform: [{ translateX: -20 }] }]}>40</Text>
-    </View>
-  </View>
+          <View style={styles.scaleLabelsRow}>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: "0%", transform: [{ translateX: -5 }] }]}>0</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: `${(18.5 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>18.5</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: `${(25 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>25</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: `${(30 / 40) * 100}%`, transform: [{ translateX: -10 }] }]}>30</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: "100%", transform: [{ translateX: -20 }] }]}>40</Text>
+          </View>
+        </View>
 
+        {/* BARRE BMR */}
+        <View style={styles.scaleContainer}>
+          <Text style={styles.scaleLabel}>BMR level</Text>
 
-  {/* BARRE BMR */}
-  <View style={styles.scaleContainer}>
-  <Text style={styles.scaleLabel}>BMR level</Text>
+          <View style={[styles.scaleBar, { width: 250 }]}>
+            <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 200 }]} />
+            <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 400 }]} />
+            <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 400 }]} />
+            <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 300 }]} />
 
-  <View style={[styles.scaleBar, { width: 250 }]}>
-    <View style={[styles.scaleSegment, { backgroundColor: "#00BFFF", flex: 200 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#34C759", flex: 400 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#FF9500", flex: 400 }]} />
-    <View style={[styles.scaleSegment, { backgroundColor: "#FF3B30", flex: 300 }]} />
+            <View
+              style={[
+                styles.indicator,
+                { left: `calc(${((bmr - 1000) / 2000) * 100}% - 1px)` }
+              ]}
+            />
+          </View>
 
-    {/* CURSEUR */}
-    <View
-      style={[
-        styles.indicator,
-        { left: `calc(${((bmr - 1000) / 2000) * 100}% - 1px)` }
-      ]}
-    />
-  </View>
+          <View style={{ width: 250, position: "relative", height: 16, marginTop: 4 }}>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: 0 }]}>1200</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: ((1400-1200)/1300)*250 - 15 }]}>1400</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: ((1800-1200)/1300)*250 - 15 }]}>1800</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: ((2200-1200)/1300)*250 - 15 }]}>2200</Text>
+            <Text style={[styles.scaleNumber, { position: "absolute", left: 250 - 30 }]}>2500</Text>
+          </View>
+        </View>
 
-  {/* ÉTIQUETTES en dessous */}
-  <View style={{ width: 250, position: "relative", height: 16, marginTop: 4 }}>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: 0 }]}>1200</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: ((1400-1200)/1300)*250 - 15 }]}>1400</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: ((1800-1200)/1300)*250 - 15 }]}>1800</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: ((2200-1200)/1300)*250 - 15 }]}>2200</Text>
-      <Text style={[styles.scaleNumber, { position: "absolute", left: 250 - 30 }]}>2500</Text>
-    </View>
-  </View>
         {/* CALORIES BAR */}
         <View style={{ marginTop: 20 }}>
-          <Text style={styles.infoLabel}>Today calories</Text>
+          <Text style={styles.infoLabel}>
+            Today calories: <Text style={styles.infoLabel}></Text>
+          </Text>
+
+          <Text style={styles.calorieText2}>
+            {caloriesConsumed} / {caloriesMax}
+            {deficitOrSurplus !== 0 &&
+              ` ${deficitOrSurplus > 0 ? "+" : ""}${deficitOrSurplus} (${autoGoal})`} kcal
+          </Text>
 
           <View style={styles.calorieRow}>
             <View style={styles.calorieBar}>
-              {caloriesConsumed <= caloriesMax && (
+              {caloriesConsumed <= finalCaloriesMax && (
                 <View
                   style={[
                     styles.calorieFill,
@@ -238,7 +382,7 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
                 />
               )}
 
-              {caloriesConsumed > caloriesMax && (
+              {caloriesConsumed > finalCaloriesMax && (
                 <View
                   style={[
                     styles.calorieFill,
@@ -252,10 +396,6 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
                 />
               )}
             </View>
-
-            <Text style={styles.calorieText}>
-              {caloriesConsumed} / {caloriesMax} kcal
-            </Text>
           </View>
         </View>
 
@@ -296,7 +436,6 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
         </View>
       </View>
 
-
       {/* Bouton profil */}
       <TouchableOpacity style={styles.profileButton} onPress={navigateToProfile}>
         <Text style={styles.profileButtonText}>Change my profile</Text>
@@ -314,7 +453,6 @@ export default function HomeScreen({ user, navigateToProfile, navigateToRecipe }
 
       {user.mealPreferences?.includes("Snacks") &&
         renderCarousel("🍪 Snacks", MEALS.snacks)}
-
 
     </ScrollView>
   );
@@ -355,18 +493,18 @@ const styles = StyleSheet.create({
   mealCardSelected: { borderColor: "#34C759", borderWidth: 2 },
   mealName: { fontSize: 16, fontWeight: "600", marginBottom: 6 },
   mealCalories: { fontSize: 14, color: "#555" },
-  scaleContainer: {
-  marginTop: 15,
-  marginBottom: 10,
-  },
+  mealProtein: { fontSize: 14, color: "#333" },
 
+  scaleContainer: {
+    marginTop: 15,
+    marginBottom: 10,
+  },
   scaleLabel: {
     fontSize: 14,
     fontWeight: "600",
     marginBottom: 6,
     color: "#444",
   },
-
   scaleBar: {
     flexDirection: "row",
     height: 12,
@@ -374,11 +512,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     position: "relative",
   },
-
-  scaleSegment: {
-    height: "100%",
-  },
-
+  scaleSegment: { height: "100%" },
   indicator: {
     position: "absolute",
     top: -2,
@@ -386,8 +520,6 @@ const styles = StyleSheet.create({
     height: 16,
     backgroundColor: "black",
   },
-
-
   scaleLabelsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between', 
@@ -396,7 +528,6 @@ const styles = StyleSheet.create({
     position: "relative", 
     height: 16
   },
-
   scaleNumber: {
     fontSize: 10,
     color: '#444',
@@ -404,7 +535,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 30, 
   },
-  // CAL & PROT BARS
+
   calorieRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -429,7 +560,12 @@ const styles = StyleSheet.create({
     width: 110,
     textAlign: "right",
   },
-
+  calorieText2: {
+    fontSize: 14,
+    fontWeight: "600",
+    flexShrink: 1
+    
+  },
   recipeButton: {
     marginTop: 8,
     backgroundColor: "#131F71",
@@ -443,6 +579,4 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 14,
   },
-
-
 });
